@@ -14,7 +14,7 @@ class CreateSpesifikasiTable extends Migration
     public function up()
     {
         Schema::create('spesifikasi', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_spesifikasi');
             $table->string('procesor');
             $table->integer('ram');
             $table->integer('hardisk');

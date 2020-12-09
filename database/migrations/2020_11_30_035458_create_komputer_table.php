@@ -14,7 +14,7 @@ class CreateKomputerTable extends Migration
     public function up()
     {
         Schema::create('komputer', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_komputer');
             $table->string('nama_komp');
             $table->string('ip');
             $table->string('mac');

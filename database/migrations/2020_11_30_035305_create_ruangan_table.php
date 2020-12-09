@@ -14,7 +14,7 @@ class CreateRuanganTable extends Migration
     public function up()
     {
         Schema::create('ruangan', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_ruangan');
             $table->string('nama_ruangan');
             $table->string('jenis_ruangan');
             $table->timestamps();

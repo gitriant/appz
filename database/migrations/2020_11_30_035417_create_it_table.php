@@ -14,7 +14,7 @@ class CreateItTable extends Migration
     public function up()
     {
         Schema::create('it', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_it');
             $table->string('email');
             $table->string('nama');
             $table->string('username');
