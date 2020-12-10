@@ -76,6 +76,12 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data IT</p>
             </a>
           </li>
+          <li class="nav-item {{ Request::is('data_kerusakan*') ? 'active' : '' }}">
+            <a class="nav-link" href="/data_kerusakan">
+              <i class="material-icons">content_paste</i>
+              <p>Data Jenis Kerusakan</p>
+            </a>
+          </li>
           <li class="nav-item {{ Request::is('typography*') ? 'active' : '' }}">
             <a class="nav-link" href="/typography">
               <i class="material-icons">library_books</i>
@@ -98,18 +104,6 @@ The above copyright notice and this permission notice shall be included in all c
             <a class="nav-link" href="/notifications">
               <i class="material-icons">notifications</i>
               <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('rtl*') ? 'active' : '' }}">
-            <a class="nav-link" href="/rtl">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="/upgrade">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
             </a>
           </li>
         </ul>
@@ -174,7 +168,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="/login">Log out</a>
                 </div>
               </li>
             </ul>

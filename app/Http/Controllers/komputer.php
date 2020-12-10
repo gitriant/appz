@@ -16,7 +16,7 @@ class komputer extends Controller
     {
         $judul = "Inventaris Komputer";
         $ruangan = m_ruangan::all();
-        return view('v_tables', compact('judul'), [
+        return view('v_komputer', compact('judul'), [
             'ruangan' => $ruangan,
         ]);
     }
@@ -30,8 +30,7 @@ class komputer extends Controller
             ->addColumn('aksi', function ($data) {
                 return
                     '<button id="edit" data-id="' . $data->id_komp . '" class="btn btn-primary">Edit</button>
-                    <button id="delete" data-id="' . $data->id_komp . '" data-idspe="' . $data->id_spesifikasi . '" class="btn btn-danger">Delete</button>
-                    <button id="edit" data-id="' . $data->id_komp . '" class="btn btn-warning">Spesifikasi</button>';
+                    <button id="delete" data-id="' . $data->id_komp . '" data-idspe="' . $data->id_spesifikasi . '" class="btn btn-danger">Delete</button>';
             })
             ->rawColumns(['aksi'])
             ->toJson();

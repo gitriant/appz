@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\komputer;
 use App\Http\Controllers\ruangan;
 use App\Http\Controllers\it;
+use App\Http\Controllers\kerusakan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -66,7 +69,18 @@ Route::post('/store_it', [it::class, 'store']);
 Route::post('/edit_it', [it::class, 'edit']);
 Route::put('/update_it/{id}', [it::class, 'update']);
 Route::delete('/delete_it/{id}', [it::class, 'destroy']);
+//kerusakan
+Route::get('/data_kerusakan', [kerusakan::class, 'index']);
+Route::get('/json_kerusakan',  [kerusakan::class, 'json']);
+Route::post('/store_kerusakan', [kerusakan::class, 'store']);
+Route::post('/edit_kerusakan', [kerusakan::class, 'edit']);
+Route::put('/update_kerusakan/{id}', [kerusakan::class, 'update']);
+Route::delete('/delete_kerusakan/{id}', [kerusakan::class, 'destroy']);
 
+Route::get('/login', function () {
+    $judul = "typography";
+    return view('v_login', compact('judul'));
+});
 Route::get('/typography', function () {
     $judul = "typography";
     return view('v_typography', compact('judul'));
