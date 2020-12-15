@@ -22,24 +22,12 @@ use Illuminate\Routing\Route as RoutingRoute;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/a', function () {
-    $judul = "Dashboard";
-    return view('a', compact('judul'));
-});
-Route::get('/', function () {
 
-    $judul = "Dashboard";
-    return view('v_dashboard', compact('judul'));
-});
-
-=======
 // Route::get('/', function () {
 
 //     $judul = "Dashboard";
 //     return view('v_dashboard', compact('judul'));
 // });
->>>>>>> df86510a8d7484df492c577ce690ed8039a1b6ad
 Route::get('/dashboard', [home::class, 'index']);
 
 Route::get('/icons', function () {
