@@ -34,6 +34,10 @@ Route::get('/dashboard', function () {
     $judul = "Dashboard";
     return view('v_dashboard', compact('judul'));
 });
+Route::get('/v_itprogres', function () {
+    $judul = "Dashboard";
+    return view('v_itprogres', compact('judul'));
+});
 Route::get('/icons', function () {
     $judul = "Icons";
     return view('v_icons', compact('judul'));
