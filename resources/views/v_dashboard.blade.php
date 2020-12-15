@@ -27,14 +27,14 @@
       <div class="card card-stats">
         <div class="card-header card-header-success card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">store</i>
+            <i class="material-icons">assignment_turned_in</i>
           </div>
-          <p class="card-category">Revenue</p>
-          <h3 class="card-title">$34,245</h3>
+          <p class="card-category">Close Ticket</p>
+          <h3 class="card-title">{{$ticket->close}}</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">date_range</i> Last 24 Hours
+            <i class="material-icons">local_offer</i> View Ticket
           </div>
         </div>
       </div>
@@ -46,11 +46,11 @@
             <i class="material-icons">info_outline</i>
           </div>
           <p class="card-category">Open Ticket</p>
-          <h3 class="card-title">{{$ticket_close}}</h3>
+          <h3 class="card-title">{{$ticket->open}}</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">local_offer</i> Tracked from Github
+            <i class="material-icons">local_offer</i> View Ticket
           </div>
         </div>
       </div>
@@ -61,12 +61,12 @@
           <div class="card-icon">
             <i class="fa fa-twitter"></i>
           </div>
-          <p class="card-category">Followers</p>
-          <h3 class="card-title">+245</h3>
+          <p class="card-category">Pending Ticket</p>
+          <h3 class="card-title">{{$ticket->onprogres}}</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">update</i> Just Updated
+            <i class="material-icons">update</i> View Ticket
           </div>
         </div>
       </div>

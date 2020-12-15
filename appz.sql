@@ -41,13 +41,20 @@ DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback` (
   `id_feedback` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `feedback` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stars` int(11) NOT NULL,
+  `stars` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_feedback`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `feedback` */
+
+insert  into `feedback`(`id_feedback`,`feedback`,`stars`,`created_at`,`updated_at`) values 
+(92,'12345',4,'2020-12-15 01:48:27','2020-12-15 01:49:52'),
+(93,'-',NULL,'2020-12-15 04:15:18','2020-12-15 04:15:18'),
+(94,'Rasanya Anjieng Bangget',5,'2020-12-15 04:20:11','2020-12-15 04:22:58'),
+(95,'-',NULL,'2020-12-15 04:23:59','2020-12-15 04:23:59'),
+(96,'-',NULL,'2020-12-15 04:34:10','2020-12-15 04:34:10');
 
 /*Table structure for table `it` */
 
@@ -63,26 +70,35 @@ CREATE TABLE `it` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_it`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `it` */
 
 insert  into `it`(`id_it`,`email`,`nama`,`username`,`password`,`level`,`created_at`,`updated_at`) values 
-(2,'m.farisi@binus.edu','M. SALMAN AL-FARISI','salman','$2y$10$fjkqCj98U3wBQNPc1zc5lOIIIdkGI6adTZoHq52t8ns8wE6E4Nb86','superuser','2020-12-09 14:03:16','2020-12-09 14:03:16');
+(8,'yogi.trianto@binus.edu','YOGI TRIANTO','yogi.trianto','$2y$10$ePOw7gnondKVzohBk8OsyuCmllurIsoGFo4oIKHTx2wSWCatXnQiq','user','2020-12-14 05:17:12','2020-12-14 05:17:12'),
+(9,'m.farisi@binus.edu','M. SALMAN AL-FARISI','m.farisi','$2y$10$CSC.A3AgpZOjijNS082o2OGATgXjaV9pAjtTQUuinQjdmRpCIIiqa','user','2020-12-14 05:19:52','2020-12-14 05:19:52'),
+(12,'ifaahakhododo@binus.edu','Ikhtiar Faahakhododo','faahakhododo','$2y$10$iPIg1uX1wJWKtQz1wIkDbOySrPZNfBI13qZ.XlOkJwJt55WBMq7rW','Newbie','2020-12-15 03:36:44','2020-12-15 03:36:44');
 
 /*Table structure for table `kerusakan` */
 
 DROP TABLE IF EXISTS `kerusakan`;
 
 CREATE TABLE `kerusakan` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_kerusakan` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `jenis_kerusakan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id_kerusakan`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `kerusakan` */
+
+insert  into `kerusakan`(`id_kerusakan`,`jenis_kerusakan`,`created_at`,`updated_at`) values 
+(1,'SOFTWARE BERMASALAH','2020-12-10 03:19:41','2020-12-10 03:20:01'),
+(2,'MOUSE RUSAK','2020-12-10 03:23:07','2020-12-10 03:23:07'),
+(3,'Internet terputus','2020-12-10 10:56:13','2020-12-10 10:56:13'),
+(4,'Layar Tidak Tampil','2020-12-10 10:56:27','2020-12-10 10:56:27'),
+(5,'Lainnya','2020-12-10 10:56:42','2020-12-10 10:56:42');
 
 /*Table structure for table `komputer` */
 
@@ -102,12 +118,28 @@ CREATE TABLE `komputer` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_komp`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `komputer` */
 
 insert  into `komputer`(`id_komp`,`nama_komp`,`ip`,`mac`,`user`,`email`,`id_ruangan`,`id_spesifikasi`,`status`,`keterangan`,`created_at`,`updated_at`) values 
-(2,'SALMAN','10.38.10.13','DF:46:S4','salman -ganteng banget','m.farisisi@binus.edu',1,7,'peminjaman','OK','2020-12-05 03:03:14','2020-12-09 08:40:53');
+(4,'YOGI T','10.38.20.69','D4:4J:33:','YOGI TRI','yogi@binus.edu',2,9,'aktif','LANCAR','2020-12-10 02:02:01','2020-12-10 02:02:01'),
+(5,'SALMAN-GANTENG','10.38.20.69','D4:33:F4','M. SALMAN AL-FARISI','m.farisi@binus.edu',2,10,'peminjaman','di pinjam acara','2020-12-10 02:38:21','2020-12-15 03:46:03'),
+(7,'A0503','10.38.11.53','18-60-24-22-55-A1','','',5,0,'aktif','',NULL,NULL),
+(8,'A0506','10.38.11.56','18-60-24-22-54-A8','','',6,0,'aktif','',NULL,NULL),
+(9,'A0507','10.38.11.57','18-60-24-22-55-20','','',7,0,'aktif','',NULL,NULL),
+(10,'A0508','10.38.11.58','18-60-24-22-55-90','','',8,0,'aktif','',NULL,NULL),
+(11,'A05011','10.38.11.61','18-60-24-22-54-D1','','',9,0,'aktif','',NULL,NULL),
+(12,'A05012','10.38.11.62','18-60-24-22-55-97','','',10,0,'aktif','',NULL,NULL),
+(13,'A05016','10.38.11.66','18-60-24-22-54-AD','','',11,0,'aktif','',NULL,NULL),
+(14,'A0408','10.38.11.8','18-60-24-22-54-52','','',2,0,'aktif','',NULL,NULL),
+(15,'A0409','10.38.11.9','18-60-24-22-55-57','','',1,0,'aktif','',NULL,NULL),
+(16,'A0411','10.38.11.11','18-60-24-22-55-58','','',12,0,'aktif','',NULL,NULL),
+(17,'A0412','10.38.11.12','18-60-24-22-54-54','','',13,0,'aktif','',NULL,NULL),
+(18,'A0413','10.38.11.13','18-60-24-22-54-4D','','',14,0,'aktif','',NULL,NULL),
+(19,'A0314','10.38.22.131','10-E7-C6-0A-72-23','','',15,0,'aktif','',NULL,NULL),
+(20,'A0315','10.38.25.131','10-E7-C6-07-26-45','','',16,0,'aktif','',NULL,NULL),
+(21,'A0317','10.38.23.131','c4-65-16-9b-ac-c7','','',17,0,'aktif','',NULL,NULL);
 
 /*Table structure for table `migrations` */
 
@@ -153,16 +185,22 @@ CREATE TABLE `password_resets` (
 DROP TABLE IF EXISTS `resolution`;
 
 CREATE TABLE `resolution` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `resolution` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kerusakan` int(11) NOT NULL,
-  `status` enum('open','on progress','resolved') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_resolution` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `resolution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_kerusakan` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id_resolution`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `resolution` */
+
+insert  into `resolution`(`id_resolution`,`resolution`,`id_kerusakan`,`created_at`,`updated_at`) values 
+(93,'Okey',3,'2020-12-15 01:48:27','2020-12-15 01:49:58'),
+(94,NULL,2,'2020-12-15 04:15:18','2020-12-15 04:15:18'),
+(95,'Dosennya yang bermasalah bukan softwarenya',1,'2020-12-15 04:20:11','2020-12-15 04:22:32'),
+(96,'Hello Indonesia',2,'2020-12-15 04:23:59','2020-12-15 04:33:13'),
+(97,NULL,4,'2020-12-15 04:34:10','2020-12-15 04:34:10');
 
 /*Table structure for table `ruangan` */
 
@@ -175,13 +213,26 @@ CREATE TABLE `ruangan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_ruangan`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `ruangan` */
 
 insert  into `ruangan`(`id_ruangan`,`nama_ruangan`,`jenis_ruangan`,`created_at`,`updated_at`) values 
-(1,'409','creative class',NULL,NULL),
-(2,'408','creative class','2020-12-09 08:24:43','2020-12-09 08:24:43');
+(1,'A0409','creative class',NULL,NULL),
+(2,'A0408','creative class','2020-12-09 08:24:43','2020-12-09 08:24:43'),
+(5,'A0503','Reguler Class',NULL,NULL),
+(6,'A0506','Reguler Class',NULL,NULL),
+(7,'A0507','Reguler Class',NULL,NULL),
+(8,'A0508','Reguler Class',NULL,NULL),
+(9,'A05011','Reguler Class',NULL,NULL),
+(10,'A05012','Reguler Class',NULL,NULL),
+(11,'A05016','Reguler Class',NULL,NULL),
+(12,'A0411','Tribune Class',NULL,NULL),
+(13,'A0412','Tribune Class',NULL,NULL),
+(14,'A0413','Tribune Class',NULL,NULL),
+(15,'A0314','Lab Komp',NULL,NULL),
+(16,'A0315','Lab Komp',NULL,NULL),
+(17,'A0317','Lab Komp',NULL,NULL);
 
 /*Table structure for table `spesifikasi` */
 
@@ -201,30 +252,39 @@ CREATE TABLE `spesifikasi` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_spesifikasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `spesifikasi` */
 
 insert  into `spesifikasi`(`id_spesifikasi`,`procesor`,`ram`,`hardisk`,`ssd`,`keyboard`,`monitor`,`mouse`,`cpu`,`tahun`,`created_at`,`updated_at`) values 
-(8,'intel core i3',4,500,0,'hp-12121s131','hp19-dqdq131ws','hp1231s131','hp 290 g1 MT','2015','2020-12-05 05:37:19','2020-12-05 05:37:19');
+(9,'intel core i3',4,500,0,'hp-sasjasQ83718J','HP19-ASNAHKS11','HP-121SQS1','HP 280 G1 MT','2013','2020-12-10 02:02:01','2020-12-10 02:02:01'),
+(10,'core i3',4,500,0,'HP-1XQG1','HP19-QS1BJ12','HP-AQNSJ12313','HP 280 G1 MT','2013','2020-12-10 02:38:21','2020-12-10 02:38:21');
 
 /*Table structure for table `ticket` */
 
 DROP TABLE IF EXISTS `ticket`;
 
 CREATE TABLE `ticket` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_ticket` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_komputer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `problem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_it` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_resolution` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_it` int(255) DEFAULT NULL,
+  `id_resolution` int(255) DEFAULT NULL,
+  `id_feedback` int(11) DEFAULT NULL,
+  `status` enum('open','onprogres','close') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timer` time DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_ticket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `ticket` */
+
+insert  into `ticket`(`id_ticket`,`id_komputer`,`problem`,`id_it`,`id_resolution`,`id_feedback`,`status`,`timer`,`created_at`,`updated_at`) values 
+('201215-3006','20','MOUSE RUSAK',12,96,95,'close','09:03:00','2020-12-15 04:23:59','2020-12-15 04:33:09'),
+('201215-5321','20','MOUSE RUSAK',8,94,93,'onprogres',NULL,'2020-12-15 04:15:18','2020-12-15 04:16:07'),
+('201215-7366','20','SOFTWARE BERMASALAH',12,95,94,'close','02:02:00','2020-12-15 04:20:11','2020-12-15 04:22:21'),
+('201215-9917','4','Internet terputus',9,93,92,'close','01:10:00','2020-12-15 01:48:27','2020-12-15 01:49:41');
 
 /*Table structure for table `users` */
 

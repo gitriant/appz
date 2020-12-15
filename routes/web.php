@@ -7,6 +7,7 @@ use App\Http\Controllers\ruangan;
 use App\Http\Controllers\it;
 use App\Http\Controllers\kerusakan;
 use App\Http\Controllers\trouble;
+use App\Http\Controllers\home;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Route as RoutingRoute;
 
@@ -30,14 +31,9 @@ Route::get('/', function () {
     $judul = "Dashboard";
     return view('v_dashboard', compact('judul'));
 });
-Route::get('/dashboard', function () {
-    $judul = "Dashboard";
-    return view('v_dashboard', compact('judul'));
-});
-Route::get('/v_itprogres', function () {
-    $judul = "Dashboard";
-    return view('v_itprogres', compact('judul'));
-});
+
+Route::get('/dashboard', [home::class, 'index']);
+
 Route::get('/icons', function () {
     $judul = "Icons";
     return view('v_icons', compact('judul'));
