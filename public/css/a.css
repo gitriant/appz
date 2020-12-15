@@ -13,11 +13,6 @@ body {
     font-family: "Roboto", sans-serif;
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(
-        to right bottom,
-        var(--primary),
-        var(--secondary)
-    );
 }
 
 h2 {
@@ -131,6 +126,21 @@ h2 {
     cursor: pointer;
     border-radius: 8px;
     position: relative;
+    width: 100px;
+    font-weight: bold;
+}
+
+.btn-submit.hidden {
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #fcebec;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    width: 100px;
+    display: none;
+    font-weight: bold;
 }
 
 .btn-submit:hover {
@@ -333,6 +343,8 @@ h2 {
     padding: 0;
     border-top: 2px solid #348e80;
     list-style: none;
+    margin-top: 250px;
+    margin-bottom: 0%;
 }
 .ps-timeline-sec .container ol.ps-timeline li {
     float: left;
@@ -355,7 +367,24 @@ h2 {
     font-style: normal;
     position: absolute;
     top: -26px;
-    left: 50%;
+    left: 100%;
+}
+.ps-timeline-sec .container ol.ps-timeline li span.grey {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    background: #fff;
+    border: 4px solid #348e80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0px #fff;
+    text-align: center;
+    line-height: 50px -10;
+    color: grey;
+    font-size: 2em;
+    font-style: normal;
+    position: absolute;
+    top: -26px;
+    left: 100%;
 }
 .ps-timeline-sec .container ol.ps-timeline li span.ps-sp-top:before {
     content: "";
@@ -403,12 +432,14 @@ h2 {
     position: absolute;
     bottom: 0;
     margin-bottom: 130px;
+    left: 50%;
     width: 100%;
 }
 .ps-timeline-sec .container ol.ps-timeline li .img-handler-top-finish {
     position: absolute;
     bottom: 0;
     margin-bottom: 130px;
+    left: 50%;
     width: 100%;
 }
 .ps-timeline-sec .container ol.ps-timeline li .img-handler-top img {
@@ -497,9 +528,13 @@ h2 {
 }
 
 .ps-timeline-sec .container ol.ps-timeline li .img-handler-bot img {
-    display: table;
+    position: absolute;
+    left: 80%;
+    position: absolute !important;
+    top: 10px !important;
+    width: 50% !important;
+    float: left !important;
     margin: 0 auto;
-    width: 120px;
 }
 
 .ps-timeline-sec .container ol.ps-timeline li p {
@@ -512,7 +547,24 @@ h2 {
     text-align: center;
     margin-top: 35px;
     width: 100%;
+    left: 50%;
     color: #d3d3d3;
+}
+.ps-timeline-sec .container ol.ps-timeline li .ps-bot-search-black {
+    position: absolute;
+    text-align: center;
+    margin-top: 35px;
+    width: 100%;
+    left: 50%;
+    color: black;
+}
+.ps-timeline-sec .container ol.ps-timeline li .ps-bot-in {
+    position: absolute;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 40px;
+    width: 100%;
+    color: black;
 }
 
 .ps-timeline-sec .container ol.ps-timeline li .ps-top-run {
@@ -522,6 +574,16 @@ h2 {
     text-align: center;
     width: 100%;
     color: #d3d3d3;
+    left: 50%;
+}
+.ps-timeline-sec .container ol.ps-timeline li .ps-top-run-black {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 100px;
+    text-align: center;
+    width: 100%;
+    color: black;
+    left: 50%;
 }
 .ps-timeline-sec .container ol.ps-timeline li .ps-top-feedback {
     position: absolute;
@@ -537,9 +599,86 @@ h2 {
     text-align: center;
     margin-top: 35px;
     width: 100%;
+    left: 50%;
     color: #d3d3d3;
     /* margin-left: 40px; */
 }
+.ps-timeline-sec .container ol.ps-timeline li .ps-bot-finish-black {
+    position: absolute;
+    text-align: center;
+    margin-top: 35px;
+    width: 100%;
+    left: 50%;
+    color: black;
+    /* margin-left: 40px; */
+}
+.img-search {
+    background: url("http://127.0.0.1:8000/image/search.png");
+}
+.img-search-grey {
+    background: url("http://127.0.0.1:8000/image/search-grey.png");
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    position: relative;
+    width: 1em;
+    font-size: 3vw;
+    color: #ffd600;
+    cursor: pointer;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+    opacity: 0.4;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 150px;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
+
 /* margin-left: 40px; */
 
 /* .ps-timeline-sec .container ol.ps-timeline li .grey {
