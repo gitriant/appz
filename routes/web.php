@@ -6,6 +6,7 @@ use App\Http\Controllers\komputer;
 use App\Http\Controllers\ruangan;
 use App\Http\Controllers\it;
 use App\Http\Controllers\kerusakan;
+use App\Http\Controllers\trouble;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Route as RoutingRoute;
 
@@ -77,6 +78,14 @@ Route::post('/store_kerusakan', [kerusakan::class, 'store']);
 Route::post('/edit_kerusakan', [kerusakan::class, 'edit']);
 Route::put('/update_kerusakan/{id}', [kerusakan::class, 'update']);
 Route::delete('/delete_kerusakan/{id}', [kerusakan::class, 'destroy']);
+//trouble
+Route::get('/trouble', [trouble::class, 'index']);
+Route::post('/create_ticket', [trouble::class, 'create_ticket']);
+Route::post('/update_ticket', [trouble::class, 'status_ticket']);
+Route::post('/close_ticket', [trouble::class, 'close_ticket']);
+Route::get('/trouble/{ticket}/{it}', [trouble::class, 'it_progress']);
+Route::post('/solu_ticket', [trouble::class, 'solu_ticket']);
+Route::post('/ustatus_ticket', [trouble::class, 'ustatus_ticket']);
 
 Route::get('/login', function () {
     $judul = "typography";
@@ -93,5 +102,4 @@ Route::get('/upgrade', function () {
 Route::get('/user', function () {
     $judul = "user";
     return view('v_user', compact('judul'));
-
 });

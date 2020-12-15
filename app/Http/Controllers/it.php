@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\models\m_it;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class it extends Controller
 {
@@ -40,7 +41,17 @@ class it extends Controller
         $post->level = $request->level;
         $post->save();
 
-        $data = [$post];
+
+        $response = Http::post('https://laporanbotonline.gifevetclinic.com/insertdatauser', [
+            'id' => $post->id_it,
+            'email' => $request->email,
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => $request->password,
+            'passcode' => 'ANJINGGILACODING',
+        ]);
+
+        $data = [$post, $response];
         return response()->json($data);
     }
     public function edit(Request $request)

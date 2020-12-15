@@ -18,7 +18,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    Appz
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -41,8 +41,8 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+      <div class="logo"><a href="#" class="simple-text logo-normal">
+          APPZ
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -50,12 +50,6 @@ The above copyright notice and this permission notice shall be included in all c
             <a class="nav-link" href="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
-            <a class="nav-link" href="/user">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('data_komputer*') ? 'active' : '' }}">
@@ -82,28 +76,10 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data Jenis Kerusakan</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('typography*') ? 'active' : '' }}">
-            <a class="nav-link" href="/typography">
-              <i class="material-icons">library_books</i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('icons*') ? 'active' : '' }}">
-            <a class="nav-link" href="/icons">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('map*') ? 'active' : '' }}">
-            <a class="nav-link" href="/map">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('notifications*') ? 'active' : '' }}">
-            <a class="nav-link" href="/notifications">
+          <li class="nav-item {{ Request::is('trouble*') ? 'active' : '' }}">
+            <a class="nav-link" href="/trouble">
               <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+              <p>trouble</p>
             </a>
           </li>
         </ul>
@@ -123,24 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input class="form-control" type="text" value="" class="form-control" placeholder="Search.">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -181,36 +140,11 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
       <footer class="footer">
         <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
           <div class="copyright float-right">
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </script>, IT BINUS BEKASI
           </div>
         </div>
       </footer>

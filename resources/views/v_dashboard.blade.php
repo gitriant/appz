@@ -45,8 +45,8 @@
           <div class="card-icon">
             <i class="material-icons">info_outline</i>
           </div>
-          <p class="card-category">Fixed Issues</p>
-          <h3 class="card-title">75</h3>
+          <p class="card-category">Open Ticket</p>
+          <h3 class="card-title">{{$ticket_close}}</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
