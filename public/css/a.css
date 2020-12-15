@@ -20,7 +20,11 @@ h2 {
     font-weight: 700;
     font-size: 50px;
 }
-
+.title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin-top: 10px;
+    font-size: 54px;
+}
 .container-form {
     display: flex;
     flex-direction: column;
@@ -121,7 +125,7 @@ h2 {
 .btn-submit {
     padding: 12px;
     margin-top: 10px;
-    background-color: #fcebec;
+    background-color: #dfeffb;
     border: none;
     cursor: pointer;
     border-radius: 8px;
@@ -144,7 +148,7 @@ h2 {
 }
 
 .btn-submit:hover {
-    background-color: #ddb0c8;
+    background-color: #abd6f2;
     color: white;
 }
 
@@ -362,10 +366,12 @@ h2 {
     box-shadow: 0 0 0 0px #fff;
     text-align: center;
     line-height: 50px -10;
-    color: #df8625;
+    color: #1f9cff;
     font-size: 2em;
     font-style: normal;
     position: absolute;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: bold;
     top: -26px;
     left: 100%;
 }
@@ -382,6 +388,8 @@ h2 {
     color: grey;
     font-size: 2em;
     font-style: normal;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: bold;
     position: absolute;
     top: -26px;
     left: 100%;
