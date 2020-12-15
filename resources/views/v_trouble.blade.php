@@ -33,6 +33,7 @@
             <div class="selected" id="problem">Pilih Kendala</div>
         </div>
         <button type="submit" id="kirim" class="btn-submit">Kirim</button>
+        <img id="loading" class="hidden" width="50px" src="/image/loading.svg" alt="">
         <div class="btn-submit hidden" style="text-align: center;" id="timer">hello</div>
     </div>
     <section class="ps-timeline-sec">
@@ -44,7 +45,7 @@
                             <img id="img-search" src="/image/search-grey.png" alt="" />
                         </div>
                         <div id="text-search" class="ps-bot-search">Mencari Teknisi</div>
-
+                        <input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="{{$ticket}}" />
 
                         <span id="span-search" class="ps-sp-top grey">01</span>
                     </div>
@@ -129,6 +130,8 @@
         //endstopwatch
 
         $('.container-form').on('click', '#kirim', function() {
+            $("#kirim").addClass("hidden");
+            $("#loading").removeClass("hidden");
             $.ajax({
                 type: 'POST',
                 url: '{{ url("create_ticket") }}',
@@ -141,11 +144,12 @@
                     $("#text-search").addClass("ps-bot-search-black");
                     $("#span-search").removeClass("ps-sp-top grey");
                     $("#span-search").addClass("ps-sp-top");
-                    $("#kirim").addClass("hidden");
+                    $("#loading").addClass("hidden");
                     $("#timer").removeClass("hidden");
                     incTimer()
                     $('#img-search').attr('src', '/image/search.png');
-                    $('<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' + data[0] + '" />').insertAfter('#text-search');
+                    $("#id_ticket").val("#" + data[0]);
+                    // $('<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' + data[0] + '" />').insertAfter('#text-search');
 
                 },
             });
@@ -164,7 +168,26 @@
                 },
                 success: function(data) {
 
-                    if (data.status == 'onprogres')
+                    if (data.status == "open" && $("#timer").text() == 'hello')
+                        $("#kirim").addClass("hidden"),
+                        $("#timer").removeClass("hidden"),
+                        incTimer();
+                    else if (data.status == "onprogres" && $("#timer").text() == 'hello')
+                        $("#kirim").addClass("hidden"),
+                        $("#timer").removeClass("hidden"),
+                        incTimer();
+                    else if (data.status == "open")
+                        $("#text-search").removeClass("ps-bot-search"),
+                        $("#text-search").addClass("ps-bot-search-black"),
+                        $("#span-search").removeClass("ps-sp-top grey"),
+                        $("#span-search").addClass("ps-sp-top"),
+                        $('#img-search').attr('src', '/image/search.png');
+                    else if (data.status == 'onprogres')
+                        $("#text-search").removeClass("ps-bot-search"),
+                        $("#text-search").addClass("ps-bot-search-black"),
+                        $("#span-search").removeClass("ps-sp-top grey"),
+                        $("#span-search").addClass("ps-sp-top"),
+                        $('#img-search').attr('src', '/image/search.png'),
                         $("#text-run").removeClass("ps-top-run"),
                         $("#text-run").addClass("ps-top-run-black"),
                         $("#text-search").text("Nomor Ticket Anda"),
@@ -204,6 +227,7 @@
                 },
                 success: function(data) {
                     document.getElementById("form-add").reset();
+                    $("#id_ticket").val("");
                     location.reload();
 
 

@@ -15,13 +15,35 @@ use Illuminate\Support\Facades\Http;
 
 class trouble extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kerusakan = m_kerusakan::all();
+        $ip_komp = DB::table('komputer')
+            ->where('ip', $request->ip())
+            ->first();
 
-        return view('v_trouble', [
-            'kerusakan' => $kerusakan,
-        ]);
+        if (!$ip_komp) {
+            return abort(404);
+        }
+        $kerusakan = m_kerusakan::all();
+        $ip = $request->ip();
+        $recent = DB::table('komputer')
+            ->join('ticket', 'komputer.id_komp', '=', 'ticket.id_komputer')
+            ->where([
+                ['ip', '=', $ip],
+                ['status', '!=', 'close'],
+            ])
+            ->first();
+        if (isset($recent->ip) == $request->ip()) {
+            return view('v_trouble', [
+                'kerusakan' => $kerusakan,
+                'ticket' => '#' . $recent->id_ticket,
+            ]);
+        } else {
+            return view('v_trouble', [
+                'kerusakan' => $kerusakan,
+                'ticket' => '',
+            ]);
+        }
     }
 
     public function create_ticket(Request $request)
@@ -37,6 +59,7 @@ class trouble extends Controller
         $get = DB::table('komputer')
             ->where('ip', $request->ip())
             ->first();
+
         $get_k = DB::table('kerusakan')
             ->where('jenis_kerusakan', $problem)
             ->first();
@@ -59,7 +82,7 @@ class trouble extends Controller
         $post->save();
 
         $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
-            'text' => 'http://10.38.20.68:8000/trouble/' . $ticket,
+            'text' => 'http://10.38.10.135:8000/' . $ticket,
             'type' => 'kirimlaporan',
             'passcode' => 'ANJINGGILACODING'
         ]);
@@ -70,11 +93,13 @@ class trouble extends Controller
 
     public function status_ticket(Request $request)
     {
+
         $tiket = str_replace("#", "", $request->id_ticket);
         $get = DB::table('ticket')
             ->join('it', 'ticket.id_it', '=', 'it.id_it')
             ->where('id_ticket', $tiket)
             ->first();
+
         $get_sta = DB::table('ticket')
             ->where('id_ticket', $tiket)
             ->first();
@@ -84,7 +109,13 @@ class trouble extends Controller
             $save->timer = $request->timer;
             $save->save();
         }
-        return response()->json($get);
+
+        if (!$get) {
+            $data = ['status' => 'open'];
+        } else {
+            $data = $get;
+        }
+        return response()->json($data);
     }
 
     public function close_ticket(Request $request)
