@@ -22,6 +22,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/a', function () {
     $judul = "Dashboard";
     return view('a', compact('judul'));
@@ -32,6 +33,13 @@ Route::get('/', function () {
     return view('v_dashboard', compact('judul'));
 });
 
+=======
+// Route::get('/', function () {
+
+//     $judul = "Dashboard";
+//     return view('v_dashboard', compact('judul'));
+// });
+>>>>>>> df86510a8d7484df492c577ce690ed8039a1b6ad
 Route::get('/dashboard', [home::class, 'index']);
 
 Route::get('/icons', function () {
@@ -83,11 +91,11 @@ Route::post('/edit_kerusakan', [kerusakan::class, 'edit']);
 Route::put('/update_kerusakan/{id}', [kerusakan::class, 'update']);
 Route::delete('/delete_kerusakan/{id}', [kerusakan::class, 'destroy']);
 //trouble
-Route::get('/trouble', [trouble::class, 'index']);
+Route::get('/', [trouble::class, 'index']);
 Route::post('/create_ticket', [trouble::class, 'create_ticket']);
 Route::post('/update_ticket', [trouble::class, 'status_ticket']);
 Route::post('/close_ticket', [trouble::class, 'close_ticket']);
-Route::get('/trouble/{ticket}/{it}', [trouble::class, 'it_progress']);
+Route::get('/{ticket}/{it}', [trouble::class, 'it_progress']);
 Route::post('/solu_ticket', [trouble::class, 'solu_ticket']);
 Route::post('/ustatus_ticket', [trouble::class, 'ustatus_ticket']);
 

@@ -59,7 +59,7 @@ class komputer extends Controller
         $post->id_ruangan = $request->id_ruangan;
         $post->id_spesifikasi = $save->id_spesifikasi;
         $post->keterangan = $request->keterangan;
-        $post->status = $request->status;
+        $post->status_komp = $request->status;
         $post->save();
 
         $data = [$save, $post];
@@ -100,7 +100,7 @@ class komputer extends Controller
         $post->id_ruangan = $request->id_ruangan;
         $post->id_spesifikasi = $request->id_spesifikasi;
         $post->keterangan = $request->keterangan;
-        $post->status = $request->status;
+        $post->status_komp = $request->status;
         $post->save();
 
         $data = [$save, $post];

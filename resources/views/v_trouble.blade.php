@@ -37,6 +37,22 @@
                     IT Binus Bekasi
                 </h2>
             </div>
+            <div class="selected" id="problem">Pilih Kendala</div>
+        </div>
+        <button type="submit" id="kirim" class="btn-submit">Kirim</button>
+        <img id="loading" class="hidden" width="50px" src="/image/loading.svg" alt="">
+        <div class="btn-submit hidden" style="text-align: center;" id="timer">hello</div>
+    </div>
+    <section class="ps-timeline-sec">
+        <div class="container">
+            <ol class="ps-timeline">
+                <li>
+                    <div class="grey">
+                        <div class="img-handler-top">
+                            <img id="img-search" src="/image/search-grey.png" alt="" />
+                        </div>
+                        <div id="text-search" class="ps-bot-search">Mencari Teknisi</div>
+                        <input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="{{$ticket}}" />
 
             <div class="select-box">
                 <div class="options-container">
@@ -239,86 +255,100 @@
             totalSecs = 0;
             //endstopwatch
 
-            $(".container-form").on("click", "#kirim", function () {
-                $.ajax({
-                    type: "POST",
-                    url: '{{ url("create_ticket") }}',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        problem: $("#problem").text(),
-                    },
-                    success: function (data) {
-                        $("#text-search").removeClass("ps-bot-search");
-                        $("#text-search").addClass("ps-bot-search-black");
-                        $("#span-search").removeClass("ps-sp-top grey");
-                        $("#span-search").addClass("ps-sp-top");
-                        $("#kirim").addClass("hidden");
-                        $("#timer").removeClass("hidden");
+
+        $('.container-form').on('click', '#kirim', function() {
+            $("#kirim").addClass("hidden");
+            $("#loading").removeClass("hidden");
+            $.ajax({
+                type: 'POST',
+                url: '{{ url("create_ticket") }}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'problem': $('#problem').text(),
+                },
+                success: function(data) {
+                    $("#text-search").removeClass("ps-bot-search");
+                    $("#text-search").addClass("ps-bot-search-black");
+                    $("#span-search").removeClass("ps-sp-top grey");
+                    $("#span-search").addClass("ps-sp-top");
+                    $("#loading").addClass("hidden");
+                    $("#timer").removeClass("hidden");
+                    incTimer()
+                    $('#img-search').attr('src', '/image/search.png');
+                    $("#id_ticket").val("#" + data[0]);
+                    // $('<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' + data[0] + '" />').insertAfter('#text-search');
+
+                },
+            });
+        });
+
+        var refreshIntervalId = setInterval(ajaxCall, 3000); //300000 MS == 5 minutes
+
+        function ajaxCall() {
+            $.ajax({
+                type: 'POST',
+                url: '{{ url("update_ticket") }}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id_ticket': $('#id_ticket').val(),
+                    'timer': $('#timer').text(),
+                },
+                success: function(data) {
+
+                    if (data.status == "open" && $("#timer").text() == 'hello')
+                        $("#kirim").addClass("hidden"),
+                        $("#timer").removeClass("hidden"),
                         incTimer();
-                        $("#img-search").attr("src", "/image/search.png");
-                        $(
-                            '<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' +
-                                data[0] +
-                                '" />'
-                        ).insertAfter("#text-search");
-                    },
-                });
+                    else if (data.status == "onprogres" && $("#timer").text() == 'hello')
+                        $("#kirim").addClass("hidden"),
+                        $("#timer").removeClass("hidden"),
+                        incTimer();
+                    else if (data.status == "open")
+                        $("#text-search").removeClass("ps-bot-search"),
+                        $("#text-search").addClass("ps-bot-search-black"),
+                        $("#span-search").removeClass("ps-sp-top grey"),
+                        $("#span-search").addClass("ps-sp-top"),
+                        $('#img-search').attr('src', '/image/search.png');
+                    else if (data.status == 'onprogres')
+                        $("#text-search").removeClass("ps-bot-search"),
+                        $("#text-search").addClass("ps-bot-search-black"),
+                        $("#span-search").removeClass("ps-sp-top grey"),
+                        $("#span-search").addClass("ps-sp-top"),
+                        $('#img-search').attr('src', '/image/search.png'),
+                        $("#text-run").removeClass("ps-top-run"),
+                        $("#text-run").addClass("ps-top-run-black"),
+                        $("#text-search").text("Nomor Ticket Anda"),
+                        $("#span-run").removeClass("ps-sp-bot grey"),
+                        $("#span-run").addClass("ps-sp-bot"),
+                        $('#img-run').attr('src', '/image/run.png'),
+                        $('#text-run').text('Teknisi ' + data.nama + ' sedang dalam perjalanan')
+                    else if (data.status == "close")
+                        $("#text-finish").removeClass("ps-bot-finish"),
+                        $("#text-finish").addClass("ps-bot-finish-black"),
+                        $("#span-finish").removeClass("ps-sp-top grey"),
+                        $("#span-finish").addClass("ps-sp-top"),
+                        $('#img-finish').attr('src', '/image/finish.png'),
+                        $('#myModal1').modal('show'),
+                        clearInterval(refreshIntervalId);
+                    // else
+                    //     $("#message").html("<div class='error_log'><p class='error'>Invalid username and/or password.</p></div>");
+                },
             });
 
             var refreshIntervalId = setInterval(ajaxCall, 3000); //300000 MS == 5 minutes
 
-            function ajaxCall() {
-                $.ajax({
-                    type: "POST",
-                    url: '{{ url("update_ticket") }}',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id_ticket: $("#id_ticket").val(),
-                        timer: $("#timer").text(),
-                    },
-                    success: function (data) {
-                        if (data.status == "onprogres")
-                            $("#text-run").removeClass("ps-top-run"),
-                                $("#text-run").addClass("ps-top-run-black"),
-                                $("#text-search").text("Nomor Ticket Anda"),
-                                $("#span-run").removeClass("ps-sp-bot grey"),
-                                $("#span-run").addClass("ps-sp-bot"),
-                                $("#img-run").attr("src", "/image/run.png"),
-                                $("#text-run").text(
-                                    "Teknisi " +
-                                        data.nama +
-                                        " sedang dalam perjalanan"
-                                );
-                        else if (data.status == "close")
-                            $("#text-finish").removeClass("ps-bot-finish"),
-                                $("#text-finish").addClass(
-                                    "ps-bot-finish-black"
-                                ),
-                                $("#span-finish").removeClass("ps-sp-top grey"),
-                                $("#span-finish").addClass("ps-sp-top"),
-                                $("#img-finish").attr(
-                                    "src",
-                                    "/image/finish.png"
-                                ),
-                                $("#myModal1").modal("show"),
-                                clearInterval(refreshIntervalId);
-                        // else
-                        //     $("#message").html("<div class='error_log'><p class='error'>Invalid username and/or password.</p></div>");
-                    },
-                });
-            }
-        </script>
-        <Script>
-            $(document).on('click', '#add', function() {
-            $('#myModal1').modal('show'); }); $('.modal-footer').on('click',
-            '.add', function() { $.ajax({ type: 'POST', url: '{{
-                url("close_ticket")
-            }}', data: { '_token': $('input[name=_token]').val(), 'stars':
-            $('input[name="rating"]:checked').val(), 'feedback':
-            $('#feedback').val(), 'id_ticket': $('#id_ticket').val(), },
-            success: function(data) {
-            document.getElementById("form-add").reset(); location.reload(); },
-            }); }); //end add data
-        </Script>
-    </body>
+                },
+                success: function(data) {
+                    document.getElementById("form-add").reset();
+                    $("#id_ticket").val("");
+                    location.reload();
+
+
+                };
+            // });
+        // });
+        //end add data
+    </script>
+</body>
+
 </html>
