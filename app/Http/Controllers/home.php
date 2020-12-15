@@ -11,14 +11,17 @@ class home extends Controller
 {
     public function index()
     {
-        $ticket_open = m_ticket::where('status', 'open')->count();
-        $ticket_onprogres = m_ticket::where('status', 'onprogres')->count();
-        $ticket_close = m_ticket::where('status', 'close')->count();
+        $judul = "Dashboard";
+        $ticket = DB::table('ticket')
+            ->selectRaw('count(*) as total')
+            ->selectRaw("count(case when status = 'open' then 1 end) as open")
+            ->selectRaw("count(case when status = 'onprogres' then 1 end) as onprogres")
+            ->selectRaw("count(case when status = 'close' then 1 end) as close")
+            ->first();
 
         return view('v_dashboard', [
-            'ticket_open' => $ticket_open,
-            'ticket_onprogres' => $ticket_onprogres,
-            'ticket_close' => $ticket_close,
+            'ticket' => $ticket,
+            'judul' => $judul,
         ]);
     }
 }
