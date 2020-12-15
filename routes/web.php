@@ -20,6 +20,10 @@ use Illuminate\Routing\Route as RoutingRoute;
 |
 */
 
+Route::get('/a', function () {
+    $judul = "Dashboard";
+    return view('a', compact('judul'));
+});
 Route::get('/', function () {
 
     $judul = "Dashboard";
