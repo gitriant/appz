@@ -36,12 +36,17 @@ class home extends Controller
             ->where('status', 'close')
             ->take(10)
             ->get();
+        
+        $ticket_avg = DB::table('ticket')
+            ->avg('timer');
+        
 
         return view('v_dashboard', [
             'ticket' => $ticket,
             'ticket_open' => $ticket_open,
             'ticket_onprogres' => $ticket_onprogres,
             'ticket_close' => $ticket_close,
+            'ticket_avg' => $ticket_avg,
             'judul' => $judul,
         ]);
     }

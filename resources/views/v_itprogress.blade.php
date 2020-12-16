@@ -13,7 +13,7 @@
     <script src="/assets/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="/css/bootstrap2.css" />
     <script src="/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="itprogress.css" />
+    <link rel="stylesheet" href="/css/itprogress.css" />
   </head>
 
   <body>
@@ -62,7 +62,7 @@
           <div class="custom_select">
             <select id="status">
               <option disabled>Select Here</option>
-              <option value="open">OPEN</option>
+              <option value="open">Pending</option>
               <option value="onprogres" selected>On Progres</option>
               <option value="close">Close</option>
             </select>
@@ -110,7 +110,7 @@
     });
     //end update
     //add solution
-    $(".momo").on("click", "#in", function () {
+    $(".inputfield").on("click", "#in", function () {
       $.ajax({
         type: "POST",
         url: '{{ url("solu_ticket") }}',

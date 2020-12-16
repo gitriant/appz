@@ -22,7 +22,6 @@ use Illuminate\Routing\Route as RoutingRoute;
 |
 */
 
-
 // Route::get('/', function () {
 
 //     $judul = "Dashboard";

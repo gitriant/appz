@@ -82,7 +82,7 @@ class trouble extends Controller
         $post->save();
 
         $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
-            'text' => 'http://10.38.10.135:8000/' . $ticket,
+            'text' => 'http://10.38.10.116:8000/' . $ticket,
             'type' => 'kirimlaporan',
             'passcode' => 'ANJINGGILACODING'
         ]);
@@ -162,7 +162,7 @@ class trouble extends Controller
                 'passcode' => 'ANJINGGILACODING'
             ]);
 
-            return view('v_itprogres', [
+            return view('v_itprogress', [
                 'ticket' => $ticket_data,
             ]);
         } else {

@@ -2,6 +2,8 @@
 
 
 @section('konten')
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -53,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <!-- <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-header card-header-warning card-header-icon">
           <div class="card-icon">
@@ -68,7 +70,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <!-- <div class="row">
     <div class="col-md-4">
@@ -159,18 +161,19 @@
                   @foreach($ticket_open as $open)
                   <tr>
                     <td>
-                      <div class="form-check">
+                      <div class="form">
+                      {{'#'.$open->id_ticket}}
                       </div>
                     </td>
                     <td>{{$open->problem}} - {{$open->nama_ruangan}}</td>
-                    <td class="td-actions text-right">
+                    <!-- <td class="td-actions text-right">
                       <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                         <i class="material-icons">edit</i>
                       </button>
                       <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                         <i class="material-icons">close</i>
                       </button>
-                    </td>
+                    </td> -->
                   </tr>
                   @endforeach
                 </tbody>
@@ -182,7 +185,8 @@
                   @foreach($ticket_onprogres as $onprogres)
                   <tr>
                     <td>
-                      <div class="form-check">
+                      <div class="form">
+                      {{'#'.$onprogres->id_ticket}}
                       </div>
                     </td>
                     <td>{{$onprogres->problem}} - {{$onprogres->nama_ruangan}}</td>
@@ -205,18 +209,19 @@
                   @foreach($ticket_close as $close)
                   <tr>
                     <td>
-                      <div class="form-check">
+                      <div class="form">
+                      {{'#'.$close->id_ticket}}
                       </div>
                     </td>
                     <td>{{$close->problem}} - {{$close->nama_ruangan}}</td>
-                    <td class="td-actions text-right">
+                    <!-- <td class="td-actions text-right">
                       <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                         <i class="material-icons">edit</i>
                       </button>
                       <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                         <i class="material-icons">close</i>
                       </button>
-                    </td>
+                    </td> -->
                   </tr>
                   @endforeach
                 </tbody>
