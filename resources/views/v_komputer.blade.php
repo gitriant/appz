@@ -277,7 +277,7 @@
           name: 'nama_ruangan'
         },
         {
-          data: 'status',
+          data: 'status_komp',
           name: 'status'
         },
         {
@@ -367,7 +367,7 @@
         $('#cpu').val(data.cpu);
         $('#tahun').val(data.tahun);
         $('#keterangan').val(data.keterangan);
-        $('#status').val(data.status).attr('selected', 'selected');
+        $('#status').val(data.status_komp).attr('selected', 'selected');
         id = $('#id').val();
 
         $('.modal-title').text('Edit Data');

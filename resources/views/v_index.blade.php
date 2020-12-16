@@ -77,7 +77,7 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item {{ Request::is('trouble*') ? 'active' : '' }}">
-            <a class="nav-link" href="/trouble">
+            <a class="nav-link" href="/">
               <i class="material-icons">notifications</i>
               <p>trouble</p>
             </a>
