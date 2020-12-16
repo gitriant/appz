@@ -45,7 +45,7 @@ CREATE TABLE `feedback` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_feedback`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `feedback` */
 
@@ -54,7 +54,17 @@ insert  into `feedback`(`id_feedback`,`feedback`,`stars`,`created_at`,`updated_a
 (93,'-',NULL,'2020-12-15 04:15:18','2020-12-15 04:15:18'),
 (94,'Rasanya Anjieng Bangget',5,'2020-12-15 04:20:11','2020-12-15 04:22:58'),
 (95,'-',NULL,'2020-12-15 04:23:59','2020-12-15 04:23:59'),
-(96,'-',NULL,'2020-12-15 04:34:10','2020-12-15 04:34:10');
+(96,'-',NULL,'2020-12-15 04:34:10','2020-12-15 04:34:10'),
+(97,'-',NULL,'2020-12-15 08:34:46','2020-12-15 08:34:46'),
+(98,'-',NULL,'2020-12-15 08:35:24','2020-12-15 08:35:24'),
+(99,'-',NULL,'2020-12-15 08:37:12','2020-12-15 08:37:12'),
+(100,'-',NULL,'2020-12-15 08:38:11','2020-12-15 08:38:11'),
+(101,'-',NULL,'2020-12-15 08:40:03','2020-12-15 08:40:03'),
+(102,'good',4,'2020-12-15 11:19:49','2020-12-15 11:32:57'),
+(103,'123',4,'2020-12-15 11:33:24','2020-12-15 11:36:36'),
+(104,'5476',4,'2020-12-15 11:36:44','2020-12-15 11:37:51'),
+(105,'good',4,'2020-12-15 12:11:42','2020-12-15 12:13:48'),
+(106,'mantab',5,'2020-12-15 12:15:44','2020-12-15 12:16:30');
 
 /*Table structure for table `it` */
 
@@ -113,18 +123,18 @@ CREATE TABLE `komputer` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_ruangan` int(11) NOT NULL,
   `id_spesifikasi` int(11) NOT NULL,
-  `status` enum('aktif','perbaikan','peminjaman') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_komp` enum('aktif','perbaikan','peminjaman') COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_komp`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `komputer` */
 
-insert  into `komputer`(`id_komp`,`nama_komp`,`ip`,`mac`,`user`,`email`,`id_ruangan`,`id_spesifikasi`,`status`,`keterangan`,`created_at`,`updated_at`) values 
-(4,'YOGI T','10.38.20.69','D4:4J:33:','YOGI TRI','yogi@binus.edu',2,9,'aktif','LANCAR','2020-12-10 02:02:01','2020-12-10 02:02:01'),
-(5,'SALMAN-GANTENG','10.38.20.69','D4:33:F4','M. SALMAN AL-FARISI','m.farisi@binus.edu',2,10,'peminjaman','di pinjam acara','2020-12-10 02:38:21','2020-12-15 03:46:03'),
+insert  into `komputer`(`id_komp`,`nama_komp`,`ip`,`mac`,`user`,`email`,`id_ruangan`,`id_spesifikasi`,`status_komp`,`keterangan`,`created_at`,`updated_at`) values 
+(4,'YOGI T','10.38.10.134','D4:4J:33:','YOGI TRI','yogi@binus.edu',2,9,'aktif','LANCAR','2020-12-10 02:02:01','2020-12-10 02:02:01'),
+(5,'SALMAN-GANTENG','10.0.2.15','D4:33:F4','M. SALMAN AL-FARISI','m.farisi@binus.edu',2,10,'peminjaman','di pinjam acara','2020-12-10 02:38:21','2020-12-15 03:46:03'),
 (7,'A0503','10.38.11.53','18-60-24-22-55-A1','','',5,0,'aktif','',NULL,NULL),
 (8,'A0506','10.38.11.56','18-60-24-22-54-A8','','',6,0,'aktif','',NULL,NULL),
 (9,'A0507','10.38.11.57','18-60-24-22-55-20','','',7,0,'aktif','',NULL,NULL),
@@ -191,7 +201,7 @@ CREATE TABLE `resolution` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_resolution`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `resolution` */
 
@@ -200,7 +210,17 @@ insert  into `resolution`(`id_resolution`,`resolution`,`id_kerusakan`,`created_a
 (94,NULL,2,'2020-12-15 04:15:18','2020-12-15 04:15:18'),
 (95,'Dosennya yang bermasalah bukan softwarenya',1,'2020-12-15 04:20:11','2020-12-15 04:22:32'),
 (96,'Hello Indonesia',2,'2020-12-15 04:23:59','2020-12-15 04:33:13'),
-(97,NULL,4,'2020-12-15 04:34:10','2020-12-15 04:34:10');
+(97,NULL,4,'2020-12-15 04:34:10','2020-12-15 04:34:10'),
+(98,NULL,3,'2020-12-15 08:34:46','2020-12-15 08:34:46'),
+(99,NULL,2,'2020-12-15 08:35:24','2020-12-15 08:35:24'),
+(100,NULL,1,'2020-12-15 08:37:12','2020-12-15 08:37:12'),
+(101,NULL,1,'2020-12-15 08:38:11','2020-12-15 08:38:11'),
+(102,NULL,3,'2020-12-15 08:40:03','2020-12-15 08:40:03'),
+(103,'Mantab',2,'2020-12-15 11:19:49','2020-12-15 11:33:14'),
+(104,'Okey',1,'2020-12-15 11:33:24','2020-12-15 11:36:28'),
+(105,'Okey',3,'2020-12-15 11:36:44','2020-12-15 11:37:45'),
+(106,'Good',2,'2020-12-15 12:11:42','2020-12-15 12:13:40'),
+(107,'Mantab',4,'2020-12-15 12:15:44','2020-12-15 12:16:20');
 
 /*Table structure for table `ruangan` */
 
@@ -213,7 +233,7 @@ CREATE TABLE `ruangan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_ruangan`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `ruangan` */
 
@@ -281,8 +301,14 @@ CREATE TABLE `ticket` (
 /*Data for the table `ticket` */
 
 insert  into `ticket`(`id_ticket`,`id_komputer`,`problem`,`id_it`,`id_resolution`,`id_feedback`,`status`,`timer`,`created_at`,`updated_at`) values 
+('201215-1284','4','Internet terputus',NULL,102,101,'close',NULL,'2020-12-15 08:40:03','2020-12-15 08:40:03'),
+('201215-1741','4','Layar Tidak Tampil',9,107,106,'close','00:29:00','2020-12-15 12:15:44','2020-12-15 12:16:19'),
 ('201215-3006','20','MOUSE RUSAK',12,96,95,'close','09:03:00','2020-12-15 04:23:59','2020-12-15 04:33:09'),
-('201215-5321','20','MOUSE RUSAK',8,94,93,'onprogres',NULL,'2020-12-15 04:15:18','2020-12-15 04:16:07'),
+('201215-3959','4','SOFTWARE BERMASALAH',9,104,103,'close','00:17:00','2020-12-15 11:33:24','2020-12-15 11:36:25'),
+('201215-4417','4','MOUSE RUSAK',9,106,105,'close','01:25:00','2020-12-15 12:11:42','2020-12-15 12:13:37'),
+('201215-4513','4','MOUSE RUSAK',9,103,102,'close','00:29:00','2020-12-15 11:19:49','2020-12-15 11:32:49'),
+('201215-5301','4','Internet terputus',9,105,104,'close','00:14:00','2020-12-15 11:36:44','2020-12-15 11:37:45'),
+('201215-5321','4','MOUSE RUSAK',8,94,93,'onprogres',NULL,'2020-12-15 04:15:18','2020-12-15 04:16:07'),
 ('201215-7366','20','SOFTWARE BERMASALAH',12,95,94,'close','02:02:00','2020-12-15 04:20:11','2020-12-15 04:22:21'),
 ('201215-9917','4','Internet terputus',9,93,92,'close','01:10:00','2020-12-15 01:48:27','2020-12-15 01:49:41');
 
