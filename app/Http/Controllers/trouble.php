@@ -82,7 +82,7 @@ class trouble extends Controller
         $post->save();
 
         $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
-            'text' => 'http://10.38.10.116:8000/' . $ticket,
+            'text' => 'http://10.38.10.135:8000/' . $ticket,
             'type' => 'kirimlaporan',
             'passcode' => 'ANJINGGILACODING'
         ]);
@@ -93,6 +93,11 @@ class trouble extends Controller
 
     public function status_ticket(Request $request)
     {
+        $str_time = $request->timer;
+
+        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+        $time_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;
 
         $tiket = str_replace("#", "", $request->id_ticket);
         $get = DB::table('ticket')
@@ -106,7 +111,7 @@ class trouble extends Controller
 
         if ($get_sta->status == "close") {
             $save = m_ticket::findOrFail($tiket);
-            $save->timer = $request->timer;
+            $save->timer = $time_seconds;
             $save->save();
         }
 

@@ -18,7 +18,6 @@
         </div>
         <div class="card-footer">
           <div class="stats">
-
           </div>
         </div>
       </div>
@@ -162,7 +161,7 @@
                   <tr>
                     <td>
                       <div class="form">
-                      {{'#'.$open->id_ticket}}
+                        {{'#'.$open->id_ticket}}
                       </div>
                     </td>
                     <td>{{$open->problem}} - {{$open->nama_ruangan}}</td>
@@ -186,7 +185,7 @@
                   <tr>
                     <td>
                       <div class="form">
-                      {{'#'.$onprogres->id_ticket}}
+                        {{'#'.$onprogres->id_ticket}}
                       </div>
                     </td>
                     <td>{{$onprogres->problem}} - {{$onprogres->nama_ruangan}}</td>
@@ -210,7 +209,7 @@
                   <tr>
                     <td>
                       <div class="form">
-                      {{'#'.$close->id_ticket}}
+                        {{'#'.$close->id_ticket}}
                       </div>
                     </td>
                     <td>{{$close->problem}} - {{$close->nama_ruangan}}</td>
@@ -227,6 +226,36 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">schedule</i>
+          </div>
+          <p class="card-category">RATA-RATA LAMA PERBAIKAN</p>
+          <h3 class="card-title">{{$ticket_avg}}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-warning  card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">star</i>
+          </div>
+          <p class="card-category">Rating</p>
+          <h3 class="card-title">{{$rate}}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
           </div>
         </div>
       </div>

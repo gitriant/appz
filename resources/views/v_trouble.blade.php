@@ -117,12 +117,14 @@
     <script>
         //stopwatch
         function incTimer() {
+            var currentHours = Math.floor(totalSecs / 3600);
             var currentMinutes = Math.floor(totalSecs / 60);
             var currentSeconds = totalSecs % 60;
             if (currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
             if (currentMinutes <= 9) currentMinutes = "0" + currentMinutes;
+            if (currentHours <= 9) currentHours = "0" + currentHours;
             totalSecs++;
-            $("#timer").text(currentMinutes + ":" + currentSeconds);
+            $("#timer").text(currentHours + ":" + currentMinutes + ":" + currentSeconds);
             setTimeout('incTimer()', 1000);
         }
 

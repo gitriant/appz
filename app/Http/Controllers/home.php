@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\models\m_ticket;
+use Carbon\CarbonInterval;
 
 class home extends Controller
 {
@@ -36,10 +37,15 @@ class home extends Controller
             ->where('status', 'close')
             ->take(10)
             ->get();
-        
-        $ticket_avg = DB::table('ticket')
+
+        $timer = DB::table('ticket')
             ->avg('timer');
-        
+
+        $rate = DB::table('feedback')
+            ->avg('stars');
+
+        $ticket_avg = CarbonInterval::seconds($timer)->cascade()->format('%H:%I:%s');
+
 
         return view('v_dashboard', [
             'ticket' => $ticket,
@@ -48,6 +54,7 @@ class home extends Controller
             'ticket_close' => $ticket_close,
             'ticket_avg' => $ticket_avg,
             'judul' => $judul,
+            'rate' => round($rate, 2),
         ]);
     }
 }
