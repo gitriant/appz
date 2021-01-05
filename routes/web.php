@@ -8,6 +8,7 @@ use App\Http\Controllers\it;
 use App\Http\Controllers\kerusakan;
 use App\Http\Controllers\trouble;
 use App\Http\Controllers\home;
+use App\Http\Controllers\ticket;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Route as RoutingRoute;
 
@@ -77,6 +78,10 @@ Route::post('/store_kerusakan', [kerusakan::class, 'store']);
 Route::post('/edit_kerusakan', [kerusakan::class, 'edit']);
 Route::put('/update_kerusakan/{id}', [kerusakan::class, 'update']);
 Route::delete('/delete_kerusakan/{id}', [kerusakan::class, 'destroy']);
+//ticket
+Route::get('/data_ticket', [ticket::class, 'index']);
+Route::get('/json_ticket/{stat}/{M}/{Y}', [ticket::class, 'json_ticket']);
+Route::get('/notif_ticket/{jav}', [ticket::class, 'notif_ticket']);
 //trouble
 Route::get('/', [trouble::class, 'index']);
 Route::post('/create_ticket', [trouble::class, 'create_ticket']);
@@ -85,6 +90,13 @@ Route::post('/close_ticket', [trouble::class, 'close_ticket']);
 Route::get('/{ticket}/{it}', [trouble::class, 'it_progress']);
 Route::post('/solu_ticket', [trouble::class, 'solu_ticket']);
 Route::post('/ustatus_ticket', [trouble::class, 'ustatus_ticket']);
+
+//Route::post('/edit_ticket', [kerusakan::class, 'edit']);
+//Route::post('/close_ticket', [ticket::class, 'close_ticket']);
+//Route::get('/{ticket}/{it}', [ticket::class, 'it_progress']);
+//Route::post('/solu_ticket', [ticket::class, 'solu_ticket']);
+//Route::post('/ustatus_ticket', [ticket::class, 'ustatus_ticket']);
+
 
 Route::get('/login', function () {
     $judul = "typography";

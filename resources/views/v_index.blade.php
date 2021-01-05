@@ -76,6 +76,12 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data Jenis Kerusakan</p>
             </a>
           </li>
+          <li class="nav-item {{ Request::is('data_ticket*') ? 'active' : '' }}">
+            <a class="nav-link" href="/data_ticket">
+              <i class="material-icons">content_paste</i>
+              <p>Data Tiket</p>
+            </a>
+          </li>
           <li class="nav-item {{ Request::is('trouble*') ? 'active' : '' }}">
             <a class="nav-link" href="/">
               <i class="material-icons">notifications</i>

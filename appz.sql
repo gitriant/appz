@@ -293,6 +293,7 @@ CREATE TABLE `ticket` (
   `id_feedback` int(11) DEFAULT NULL,
   `status` enum('open','onprogres','close') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `timer` time DEFAULT NULL,
+  `notif` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_ticket`)
@@ -300,17 +301,17 @@ CREATE TABLE `ticket` (
 
 /*Data for the table `ticket` */
 
-insert  into `ticket`(`id_ticket`,`id_komputer`,`problem`,`id_it`,`id_resolution`,`id_feedback`,`status`,`timer`,`created_at`,`updated_at`) values 
-('201215-1284','4','Internet terputus',NULL,102,101,'close',NULL,'2020-12-15 08:40:03','2020-12-15 08:40:03'),
-('201215-1741','4','Layar Tidak Tampil',9,107,106,'close','00:29:00','2020-12-15 12:15:44','2020-12-15 12:16:19'),
-('201215-3006','20','MOUSE RUSAK',12,96,95,'close','09:03:00','2020-12-15 04:23:59','2020-12-15 04:33:09'),
-('201215-3959','4','SOFTWARE BERMASALAH',9,104,103,'close','00:17:00','2020-12-15 11:33:24','2020-12-15 11:36:25'),
-('201215-4417','4','MOUSE RUSAK',9,106,105,'close','01:25:00','2020-12-15 12:11:42','2020-12-15 12:13:37'),
-('201215-4513','4','MOUSE RUSAK',9,103,102,'close','00:29:00','2020-12-15 11:19:49','2020-12-15 11:32:49'),
-('201215-5301','4','Internet terputus',9,105,104,'close','00:14:00','2020-12-15 11:36:44','2020-12-15 11:37:45'),
-('201215-5321','4','MOUSE RUSAK',8,94,93,'onprogres',NULL,'2020-12-15 04:15:18','2020-12-15 04:16:07'),
-('201215-7366','20','SOFTWARE BERMASALAH',12,95,94,'close','02:02:00','2020-12-15 04:20:11','2020-12-15 04:22:21'),
-('201215-9917','4','Internet terputus',9,93,92,'close','01:10:00','2020-12-15 01:48:27','2020-12-15 01:49:41');
+insert  into `ticket`(`id_ticket`,`id_komputer`,`problem`,`id_it`,`id_resolution`,`id_feedback`,`status`,`timer`,`notif`,`created_at`,`updated_at`) values 
+('201215-1284','4','Internet terputus',NULL,102,101,'close',NULL,NULL,'2020-12-15 08:40:03','2020-12-15 08:40:03'),
+('201215-1741','4','Layar Tidak Tampil',9,107,106,'close','00:29:00',NULL,'2020-12-15 12:15:44','2020-12-15 12:16:19'),
+('201215-3006','20','MOUSE RUSAK',12,96,95,'close','09:03:00',NULL,'2020-12-15 04:23:59','2020-12-15 04:33:09'),
+('201215-3959','4','SOFTWARE BERMASALAH',9,104,103,'close','00:17:00',NULL,'2020-12-15 11:33:24','2020-12-15 11:36:25'),
+('201215-4417','4','MOUSE RUSAK',9,106,105,'close','01:25:00',NULL,'2020-12-15 12:11:42','2020-12-15 12:13:37'),
+('201215-4513','4','MOUSE RUSAK',9,103,102,'close','00:29:00',NULL,'2020-12-15 11:19:49','2020-12-15 11:32:49'),
+('201215-5301','4','Internet terputus',9,105,104,'close','00:14:00',NULL,'2020-12-15 11:36:44','2020-12-15 11:37:45'),
+('201215-5321','4','MOUSE RUSAK',8,94,93,'onprogres',NULL,NULL,'2020-12-15 04:15:18','2020-12-15 04:16:07'),
+('201215-7366','20','SOFTWARE BERMASALAH',12,95,94,'close','02:02:00',NULL,'2020-12-15 04:20:11','2020-12-15 04:22:21'),
+('201215-9917','4','Internet terputus',9,93,92,'close','01:10:00',NULL,'2020-12-15 01:48:27','2020-12-15 01:49:41');
 
 /*Table structure for table `users` */
 
