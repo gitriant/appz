@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\models\m_ticket;
-use App\models\m_feedback;
-use App\models\m_resolution;
-use App\models\m_kerusakan;
-use App\models\m_ruangan;
+use App\Models\m_ticket;
+use App\Models\m_feedback;
+use App\Models\m_resolution;
+use App\Models\m_kerusakan;
+use App\Models\m_ruangan;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;

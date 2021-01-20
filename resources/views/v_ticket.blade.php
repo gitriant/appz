@@ -93,27 +93,68 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="control-group">
-                                <label class="control-label">Nama Ruangan</label>
+                                <label class="control-label">Nomer Ticket</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="nama_ruangan" placeholder="Type something here..." class="span15">
+                                    <input class="form-control" type="text" id="id_ticket" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="control-group">
-                                <label class="control-label">Jenis Ruangan</label>
+                                <label class="control-label">IP Komputer</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="jenis_ruangan" placeholder="Type something here..." class="span15">
+                                    <input class="form-control" type="text" id="ip" placeholder="Type something here..." class="span15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label">Nama Komputer</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="nama_komp" placeholder="Type something here..." class="span15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label">Masalah</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="problem" placeholder="Type something here..." class="span15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label">Resolution</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="resolution" placeholder="Type something here..." class="span15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label">Feedback</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="feedback" placeholder="Type something here..." class="span15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label">Status</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="status" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('form-add').reset();">Close</button>
-                <button id="in" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <!-- <button id="in" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -231,13 +272,18 @@
                 //console.log(data);
 
                 //isi form
-                $('#id').val(data.id_ruangan);
-                $('#nama_ruangan').val(data.nama_ruangan);
-                $('#jenis_ruangan').val(data.jenis_ruangan);
+                $('#id').val(data.id_ticket);
+                $('#id_ticket').val(data.id_ticket);
+                $('#resolution').val(data.resolution);
+                $('#nama_komp').val(data.nama_komp);
+                $('#ip').val(data.ip);
+                $('#problem').val(data.problem);
+                $('#feedback').val(data.feedback);
+                $('#status').val(data.status);
 
                 id = $('#id').val();
 
-                $('.modal-title').text('Edit Data');
+                $('.modal-title').text('Rincian Data');
                 $("#in").removeClass("btn btn-primary add");
                 $("#in").addClass("btn btn-primary update");
                 $('#in').text('Update');

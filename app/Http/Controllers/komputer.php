@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\models\m_komputer;
-use App\models\m_spesifikasi;
-use App\models\m_ruangan;
+use App\Models\m_komputer;
+use App\Models\m_spesifikasi;
+use App\Models\m_ruangan;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 
 class komputer extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if (!$request->session()->has('id_it')) {
+            return redirect('/login')->with('alert', 'Silahkan Login Terlebih Dahulu!');
+        };
         $judul = "Inventaris Komputer";
-        $ruangan = m_ruangan::all();
+        $ruangan = DB::table('ruangan')
+            ->get();
         return view('v_komputer', compact('judul'), [
             'ruangan' => $ruangan,
         ]);

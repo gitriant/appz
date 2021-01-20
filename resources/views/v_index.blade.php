@@ -14,16 +14,18 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     App-z
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" /> -->
+  <link rel="stylesheet" href="/assets/googlefontapis/css/roboto.css">
+  <link rel="stylesheet" href="/assets/googlefontapis/css/material-icons.css">
+  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="/assets/css/material-dashboard.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -132,8 +134,8 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="/logout">Logout</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/login">Log out</a>
                 </div>
               </li>
             </ul>
@@ -195,8 +197,6 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="/assets/js/plugins/nouislider.min.js"></script>
   <!-- Library for adding dinamically elements -->
   <script src="/assets/js/plugins/arrive.min.js"></script>
-  <!-- Chartist JS -->
-  <script src="/assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-header card-header-warning card-header-icon">
           <div class="card-icon">
@@ -69,18 +69,19 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
-  <!-- <div class="row">
+  <div class="row">
     <div class="col-md-4">
       <div class="card card-chart">
         <div class="card-header card-header-success">
-          <div class="ct-chart" id="dailySalesChart"></div>
+          <!-- tempat isi chard -->
         </div>
         <div class="card-body">
           <h4 class="card-title">Daily Sales</h4>
           <p class="card-category">
-            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
+          </p>
         </div>
         <div class="card-footer">
           <div class="stats">
@@ -92,7 +93,7 @@
     <div class="col-md-4">
       <div class="card card-chart">
         <div class="card-header card-header-warning">
-          <div class="ct-chart" id="websiteViewsChart"></div>
+          <!-- tempat isi chard -->
         </div>
         <div class="card-body">
           <h4 class="card-title">Email Subscriptions</h4>
@@ -108,7 +109,7 @@
     <div class="col-md-4">
       <div class="card card-chart">
         <div class="card-header card-header-danger">
-          <div class="ct-chart" id="completedTasksChart"></div>
+          <!-- tempat isi chard -->
         </div>
         <div class="card-body">
           <h4 class="card-title">Completed Tasks</h4>
@@ -121,7 +122,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <div class="row">
     <div class="col-lg-6 col-md-12">
       <div class="card">
@@ -191,11 +192,11 @@
                     <td>{{$onprogres->problem}} - {{$onprogres->nama_ruangan}}</td>
                     <td class="td-actions text-right">
                       <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                        <i class="material-icons">edit</i>
+                        <a href="/{{$onprogres->id_ticket}}/{{ Session::get('id_it')}}"><i class="material-icons">edit</i></a>
                       </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                      <!-- <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                         <i class="material-icons">close</i>
-                      </button>
+                      </button> -->
                     </td>
                   </tr>
                   @endforeach
@@ -262,4 +263,103 @@
     </div>
   </div>
 </div>
+
+<script src="/assets/dist/chart.min.js"></script>
+<script src="/assets/utils.js"></script>
+<script>
+  var DATA_COUNT = 12;
+
+  var utils = Samples.utils;
+
+  utils.srand(110);
+
+  function getLineColor(ctx) {
+    return utils.color(ctx.datasetIndex);
+  }
+
+  function alternatePointStyles(ctx) {
+    var index = ctx.dataIndex;
+    return index % 2 === 0 ? 'circle' : 'rect';
+  }
+
+  function makeHalfAsOpaque(ctx) {
+    return utils.transparentize(getLineColor(ctx));
+  }
+
+  function adjustRadiusBasedOnData(ctx) {
+    var v = ctx.dataPoint.y;
+    return v < 10 ? 5 :
+      v < 25 ? 7 :
+      v < 50 ? 9 :
+      v < 75 ? 11 :
+      15;
+  }
+
+  function generateData() {
+    return utils.numbers({
+      count: DATA_COUNT,
+      min: 0,
+      max: 100
+    });
+  }
+
+  var data = {
+    labels: utils.months({
+      count: DATA_COUNT
+    }),
+    datasets: [{
+      data: generateData()
+    }]
+  };
+
+  var options = {
+    plugins: {
+      legend: false,
+      tooltip: true,
+    },
+    elements: {
+      line: {
+        fill: false,
+        backgroundColor: getLineColor,
+        borderColor: getLineColor,
+      },
+      point: {
+        backgroundColor: getLineColor,
+        hoverBackgroundColor: makeHalfAsOpaque,
+        radius: adjustRadiusBasedOnData,
+        pointStyle: alternatePointStyles,
+        hoverRadius: 15,
+      }
+    }
+  };
+
+  var chart = new Chart('chart-0', {
+    type: 'line',
+    data: data,
+    options: options
+  });
+
+
+  // eslint-disable-next-line no-unused-vars
+  function addDataset() {
+    chart.data.datasets.push({
+      data: generateData()
+    });
+    chart.update();
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  function randomize() {
+    chart.data.datasets.forEach(function(dataset) {
+      dataset.data = generateData();
+    });
+    chart.update();
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  function removeDataset() {
+    chart.data.datasets.shift();
+    chart.update();
+  }
+</script>
 @endsection

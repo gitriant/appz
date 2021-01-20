@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\models\m_kerusakan;
+use App\Models\m_kerusakan;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 
 class kerusakan extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if (!$request->session()->has('id_it')) {
+            return redirect('/login')->with('alert', 'Silahkan Login Terlebih Dahulu!');
+        };
         $judul = "Data Jenis Kerusakan";
         return view('v_kerusakan', compact('judul'));
     }

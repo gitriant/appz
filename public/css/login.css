@@ -1,0 +1,50 @@
+body {
+    background-image: url(/image/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.wrapper-login {
+    max-width: 400px;
+    border: 1px solid #999;
+    padding: 0 10px;
+    margin: 80px auto;
+    box-shadow: 0px 1px 21px 7px rgba(0, 0, 0, 0.45);
+    background-color: white;
+    border: none;
+}
+
+.wrapper-login img {
+    margin-left: 5px;
+}
+
+.logo-login {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.logo-p {
+    margin-left: 38px;
+}
+
+.form-login {
+    padding: 5px 30px;
+}
+
+.form-login img {
+    width: 20px;
+    height: 20px;
+}
+.form-text {
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.user {
+    width: 45px;
+}
+
+.btn-block {
+    padding: 10px;
+    font-size: 12px;
+    margin-bottom: 50px;
+}

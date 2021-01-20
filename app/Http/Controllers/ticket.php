@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\models\m_ticket;
-use App\models\m_feedback;
-use App\models\m_resolution;
+use App\Models\m_ticket;
+use App\Models\m_feedback;
+use App\Models\m_resolution;
 use Illuminate\Foundation\Console\Presets\React;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Http;
 
 class ticket extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if (!$request->session()->has('id_it')) {
+            return redirect('/login')->with('alert', 'Silahkan Login Terlebih Dahulu!');
+        };
         $judul  = "Ticket";
         return view('v_ticket', [
             'judul' => $judul,
@@ -67,7 +70,7 @@ class ticket extends Controller
             ->join('resolution', 'ticket.id_resolution', '=', 'resolution.id_resolution')
             ->join('feedback', 'ticket.id_feedback', '=', 'feedback.id_feedback')
             ->join('komputer', 'ticket.id_komputer', '=', 'komputer.id_komp')
-            ->where('id_ticket', $request->ids)
+            ->where('id_ticket', $request->id)
             ->first();
 
         return response()->json($get);
