@@ -72,23 +72,49 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data IT</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('data_kerusakan*') ? 'active' : '' }}">
-            <a class="nav-link" href="/data_kerusakan">
-              <i class="material-icons">content_paste</i>
-              <p>Data Jenis Kerusakan</p>
+          <li class="nav-item">
+            <a class="nav-link collapsed text-truncate" href="" data-toggle="collapse" data-target="#submenu1">
+              <i class="material-icons">build</i>
+              <p>APP-ticket</p>
             </a>
+            <div class="collapse {{ Request::is('data_ticket*','trouble*') ? 'show' : '' }}" id="submenu1" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+                <li class="nav-item {{ Request::is('data_ticket*') ? 'active' : '' }}">
+                  <a class="nav-link" href="/data_ticket">
+                    <i class="material-icons" style="line-height: 30px;">content_paste</i>
+                    <p>Data Tiket</p>
+                  </a>
+                </li>
+                <li class="nav-item {{ Request::is('trouble*') ? 'active' : '' }}">
+                  <a class="nav-link" href="/">
+                    <i class="material-icons" style="line-height: 30px;">notifications</i>
+                    <p>trouble</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li class="nav-item {{ Request::is('data_ticket*') ? 'active' : '' }}">
-            <a class="nav-link" href="/data_ticket">
-              <i class="material-icons">content_paste</i>
-              <p>Data Tiket</p>
+          <li class="nav-item">
+            <a class="nav-link collapsed text-truncate" href="" data-toggle="collapse" data-target="#submenu2">
+              <i class="material-icons">format_list_bulleted</i>
+              <p>Data Jenis</p>
             </a>
-          </li>
-          <li class="nav-item {{ Request::is('trouble*') ? 'active' : '' }}">
-            <a class="nav-link" href="/">
-              <i class="material-icons">notifications</i>
-              <p>trouble</p>
-            </a>
+            <div class="collapse {{ Request::is('data_kerusakan*','inventaris*') ? 'show' : '' }}" id="submenu2" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+                <li class="nav-item {{ Request::is('data_kerusakan*') ? 'active' : '' }}">
+                  <a class="nav-link" href="/data_kerusakan">
+                    <i class="material-icons" style="line-height: 30px;">content_paste</i>
+                    <p>Data Jenis Kerusakan</p>
+                  </a>
+                </li>
+                <li class="nav-item {{ Request::is('inventaris*') ? 'active' : '' }}">
+                  <a class="nav-link" href="/jenis_inventaris">
+                    <i class="material-icons" style="line-height: 30px;">content_paste</i>
+                    <p>Data Jenis Inventaris</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>

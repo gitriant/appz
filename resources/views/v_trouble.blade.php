@@ -115,19 +115,40 @@
 
     <script>
         //stopwatch
-        function incTimer() {
-            var currentHours = Math.floor(totalSecs / 3600);
-            var currentMinutes = Math.floor(totalSecs / 60);
-            var currentSeconds = totalSecs % 60;
-            if (currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
-            if (currentMinutes <= 9) currentMinutes = "0" + currentMinutes;
-            if (currentHours <= 9) currentHours = "0" + currentHours;
-            totalSecs++;
-            $("#timer").text(currentHours + ":" + currentMinutes + ":" + currentSeconds);
-            setTimeout('incTimer()', 1000);
+        function incTimer(time) {
+            // var currentHours = Math.floor(totalSecs / 3600);
+            // var currentMinutes = Math.floor(totalSecs / 60);
+            // var currentSeconds = totalSecs % 60;
+            // if (currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
+            // if (currentMinutes <= 9) currentMinutes = "0" + currentMinutes;
+            // if (currentHours <= 9) currentHours = "0" + currentHours;
+            // totalSecs++;
+            // $("#timer").text(currentHours + ":" + currentMinutes + ":" + currentSeconds);
+            // setTimeout('incTimer()', 1000);
+            var date2 = new Date();
+            var date1 = new Date(time);
+            var delta = Math.abs(date2 - date1) / 1000;
+            var sec_num = parseInt(delta, 10); // don't forget the second param
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+            sec_num++;
+
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            $("#timer").text(hours + ':' + minutes + ':' + seconds);
+            setTimeout('incTimer(timee)', 1000);
         }
 
-        totalSecs = 0;
+        var timee
         //endstopwatch
 
         $('.container-form').on('click', '#kirim', function() {
@@ -147,7 +168,7 @@
                     $("#span-search").addClass("ps-sp-top");
                     $("#loading").addClass("hidden");
                     $("#timer").removeClass("hidden");
-                    incTimer()
+                    incTimer(data.created_at);
                     $('#img-search').attr('src', '/image/search.png');
                     $("#id_ticket").val("#" + data[0]);
                     // $('<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' + data[0] + '" />').insertAfter('#text-search');
@@ -172,11 +193,13 @@
                     if (data.status == "open" && $("#timer").text() == 'hello')
                         $("#kirim").addClass("hidden"),
                         $("#timer").removeClass("hidden"),
-                        incTimer();
+                        timee = data[0].created_at,
+                        incTimer(data[0].created_at);
                     else if (data.status == "onprogres" && $("#timer").text() == 'hello')
                         $("#kirim").addClass("hidden"),
                         $("#timer").removeClass("hidden"),
-                        incTimer();
+                        timee = data.created_at,
+                        incTimer(data.created_at);
                     else if (data.status == "open")
                         $("#text-search").removeClass("ps-bot-search"),
                         $("#text-search").addClass("ps-bot-search-black"),

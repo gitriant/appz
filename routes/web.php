@@ -8,6 +8,7 @@ use App\Http\Controllers\it;
 use App\Http\Controllers\kerusakan;
 use App\Http\Controllers\trouble;
 use App\Http\Controllers\home;
+use App\Http\Controllers\inventaris;
 use App\Http\Controllers\ticket;
 use App\Http\Controllers\login;
 use Illuminate\Support\Facades\Storage;
@@ -72,6 +73,7 @@ Route::post('/store_it', [it::class, 'store']);
 Route::post('/edit_it', [it::class, 'edit']);
 Route::put('/update_it/{id}', [it::class, 'update']);
 Route::delete('/delete_it/{id}', [it::class, 'destroy']);
+Route::post('/get_temp', [it::class, 'get_suhu_komp']);
 //kerusakan
 Route::get('/data_kerusakan', [kerusakan::class, 'index']);
 Route::get('/json_kerusakan',  [kerusakan::class, 'json']);
@@ -89,9 +91,16 @@ Route::get('/', [trouble::class, 'index']);
 Route::post('/create_ticket', [trouble::class, 'create_ticket']);
 Route::post('/update_ticket', [trouble::class, 'status_ticket']);
 Route::post('/close_ticket', [trouble::class, 'close_ticket']);
-Route::get('/{ticket}/{it}', [trouble::class, 'it_progress']);
+Route::get('/progres/{ticket}/{it}', [trouble::class, 'it_progress']);
 Route::post('/solu_ticket', [trouble::class, 'solu_ticket']);
 Route::post('/ustatus_ticket', [trouble::class, 'ustatus_ticket']);
+//inventaris
+Route::get('/jenis_inventaris', [inventaris::class, 'index']);
+Route::get('/json_jenis_inventaris', [inventaris::class, 'json_jenis_inventaris']);
+Route::post('/store_jenis_inventaris', [inventaris::class, 'store_jenis_inventaris']);
+Route::post('/edit_jenis_inventaris', [inventaris::class, 'edit_jenis_inventaris']);
+Route::put('/update_jenis_inventaris/{id}', [inventaris::class, 'update_jenis_inventaris']);
+Route::delete('/delete_jenis_inventaris/{id}', [inventaris::class, 'destroy']);
 
 
 Route::get('/tot_ticket', [home::class, 'tot_ticket']);

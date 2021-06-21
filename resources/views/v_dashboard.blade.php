@@ -33,7 +33,6 @@
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">update</i> View Ticket
           </div>
         </div>
       </div>
@@ -49,7 +48,6 @@
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">update</i> View Ticket
           </div>
         </div>
       </div>
@@ -65,29 +63,41 @@
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">update</i> View Ticket
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="card card-chart">
         <div class="card-header card-header-success">
+          <h6 style="text-align: center;padding-top: 9.5px;padding-bottom: 9.5px;">Suhu Server</h6>
           <!-- tempat isi chard -->
         </div>
-        <div class="card-body">
-          <h4 class="card-title">Daily Sales</h4>
-          <p class="card-category">
-            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
-          </p>
+        <div class="card-body" style="padding-left: 10px;padding-right: 10px;">
+          <h1 class="card-title" id="suhu_server" style="text-align: center;">27.1<span>&#8451;</span></h1>
         </div>
-        <div class="card-footer">
+        <!-- <div class="card-footer">
           <div class="stats">
             <i class="material-icons">access_time</i> updated 4 minutes ago
           </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card card-chart">
+        <div class="card-header card-header-success">
+          <h6 style="text-align: center;padding-top: 9.5px;padding-bottom: 9.5px;">Humidity</h6>
         </div>
+        <div class="card-body">
+          <h1 class="card-title" style="text-align: center;" id="humid">78%</h1>
+        </div>
+        <!-- <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i> updated 4 minutes ago
+          </div>
+        </div> -->
       </div>
     </div>
     <div class="col-md-4">
@@ -166,14 +176,11 @@
                       </div>
                     </td>
                     <td>{{$open->problem}} - {{$open->nama_ruangan}}</td>
-                    <!-- <td class="td-actions text-right">
+                    <td class="td-actions text-right">
                       <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                        <i class="material-icons">edit</i>
+                        <a href="/{{$open->id_ticket}}/{{ Session::get('id_it')}}"><i class="material-icons">edit</i></a>
                       </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </td> -->
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -266,6 +273,21 @@
 
 <script src="/assets/dist/chart.min.js"></script>
 <script src="/assets/utils.js"></script>
+<script src="/assets/jquery-3.5.1.js"></script>
+<script>
+  var refreshIntervalId = setInterval(get_temp, 3000); //300000 MS == 5 minutes
+
+  function get_temp() {
+    $.ajax({
+      type: 'POST',
+      url: '{{ url("get_temp") }}',
+      success: function(data) {
+        $("#suhu_server").text((data.suhu * 10) / 10).append('<span>&#8451;</span>');
+        $("#humid").text((data.humid * 10) / 10).append('%');;
+      },
+    });
+  }
+</script>
 <script>
   var DATA_COUNT = 12;
 

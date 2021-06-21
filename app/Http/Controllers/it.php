@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\m_it;
+use App\Models\m_suhu;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -73,7 +74,9 @@ class it extends Controller
         $post = m_it::findOrFail($id);
         $post->nama = $request->nama;
         $post->email = $request->email;
-        $post->password = bcrypt($request->password);
+        if ($request->password) {
+            $post->password = bcrypt($request->password);
+        }
         $post->username = $request->username;
         $post->level = $request->level;
         $post->save();
@@ -87,5 +90,23 @@ class it extends Controller
         $post->delete();
 
         return response()->json($post);
+    }
+
+    public function suhu_komp(Request $request)
+    {
+        $post = new m_suhu();
+        $post->suhu = $request->suhu;
+        $post->humid = $request->humid;
+        $post->save();
+    }
+
+    public function get_suhu_komp()
+    {
+        $get = DB::table('suhu_komp')
+            ->latest('created_at')
+            ->first();
+        //->first() = hanya menampilkan satu saja dari hasil query
+        //->get() = returnnya berbentuk array atau harus banyak data
+        return response()->json($get);
     }
 }

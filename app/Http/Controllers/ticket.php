@@ -27,12 +27,13 @@ class ticket extends Controller
 
     public function json_ticket($stat, $M, $Y)
     {
+
         $data = DB::table('ticket')
             ->join('it', 'ticket.id_it', '=', 'it.id_it')
             ->join('resolution', 'ticket.id_resolution', '=', 'resolution.id_resolution')
             ->join('feedback', 'ticket.id_feedback', '=', 'feedback.id_feedback')
             ->join('komputer', 'ticket.id_komputer', '=', 'komputer.id_komp')
-            ->where('id_ticket', 'like', substr($Y, -2) . $M + 1 . '%')
+            ->where('id_ticket', 'like', substr($Y, -2) . str_pad($M + 1, 2, '0', STR_PAD_LEFT) . '%')
             ->get();
         if ($stat != "all") {
             $data = $data->where('status', $stat);
@@ -45,6 +46,18 @@ class ticket extends Controller
             })
             ->rawColumns(['aksi'])
             ->toJson();
+    }
+
+    public function api_ticket()
+    {
+        $data = DB::table('ticket')
+            ->join('it', 'ticket.id_it', '=', 'it.id_it')
+            ->join('resolution', 'ticket.id_resolution', '=', 'resolution.id_resolution')
+            ->join('feedback', 'ticket.id_feedback', '=', 'feedback.id_feedback')
+            ->join('komputer', 'ticket.id_komputer', '=', 'komputer.id_komp')
+            ->get();
+
+        return response()->json($data);
     }
 
     public function notif_ticket($java)

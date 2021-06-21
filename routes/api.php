@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\login;
+use App\Http\Controllers\it;
+use App\Http\Controllers\ticket;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/auth_login', [login::class, 'submitLogin']);
+Route::get('/get_ticket', [ticket::class, 'api_ticket']);
+Route::get('/get_it', [it::class, 'edit']);
+Route::get('/suhu/{suhu}/{humid}', [it::class, 'suhu_komp']);
+Route::get('/get_temp', [it::class, 'get_suhu_komp']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class login extends Controller
 {
@@ -44,5 +45,34 @@ class login extends Controller
         Auth::logout(); // menghapus session yang aktif
         $request->session()->flush();
         return redirect('/login');
+    }
+
+    function submitLogin(Request $request)
+    {
+        $login = DB::table('it')
+            ->where('email', $request->email . '@binus.edu')
+            //->where('password', bcrypt($request->password))
+            ->first();
+
+        //Dengan metode Json Array
+        if (Hash::check($request->password, $login->password)) {
+            $response["error"] = FALSE;
+            $response["success"] = "1";
+            $response["message"] = "Data Ditemukan";
+            $response["logindata"] = array(
+                'id_register' => $login->id_it,
+                'nama_user' => $login->nama,
+                'email' => $login->email,
+                'username' => $login->username,
+                'level' => $login->level
+            );
+            return response()->json($response);
+        } else {
+            $response["error"] = TRUE;
+            $response["success"] = "0";
+            $response["message"] = "Data Kosong";
+            $response["logindata"] = array();
+            return response()->json($response);
+        }
     }
 }

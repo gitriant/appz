@@ -82,7 +82,7 @@ class trouble extends Controller
         $post->save();
 
         $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
-            'text' => 'http://10.38.10.135:8000/' . $ticket,
+            'text' => 'http://calit.binus.local/progres/' . $ticket,
             'type' => 'kirimlaporan',
             'passcode' => 'ANJINGGILACODING'
         ]);
@@ -102,6 +102,7 @@ class trouble extends Controller
         $tiket = str_replace("#", "", $request->id_ticket);
         $get = DB::table('ticket')
             ->join('it', 'ticket.id_it', '=', 'it.id_it')
+            ->select('it.nama', 'ticket.status', 'ticket.created_at')
             ->where('id_ticket', $tiket)
             ->first();
 
@@ -116,7 +117,7 @@ class trouble extends Controller
         }
 
         if (!$get) {
-            $data = ['status' => 'open'];
+            $data = ['status' => 'open', $get_sta];
         } else {
             $data = $get;
         }
@@ -156,6 +157,8 @@ class trouble extends Controller
             $save->id_it = $it;
             $save->status = "onprogres";
             $save->save();
+
+
 
             $ticket_dataaa = DB::table('it')
                 ->where('id_it', $save->id_it)
