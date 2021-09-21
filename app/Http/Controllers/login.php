@@ -50,15 +50,18 @@ class login extends Controller
     function submitLogin(Request $request)
     {
         $login = DB::table('it')
-            ->where('email', $request->email . '@binus.edu')
+            ->where('email', $request->email)
             //->where('password', bcrypt($request->password))
             ->first();
 
-        //Dengan metode Json Array
-        if (Hash::check($request->password, $login->password)) {
+        if (!$login) {
+            $response["error"] = TRUE;
+            $response["message"] = "Email atau Password anda tidak terdaftar disistem kami";
+            $response["logindata"] = array();
+            return response()->json($response);
+        } elseif (Hash::check($request->password, $login->password)) {
             $response["error"] = FALSE;
-            $response["success"] = "1";
-            $response["message"] = "Data Ditemukan";
+            $response["message"] = "Berhasil Login";
             $response["logindata"] = array(
                 'id_register' => $login->id_it,
                 'nama_user' => $login->nama,
@@ -69,8 +72,7 @@ class login extends Controller
             return response()->json($response);
         } else {
             $response["error"] = TRUE;
-            $response["success"] = "0";
-            $response["message"] = "Data Kosong";
+            $response["message"] = "Email atau Password anda tidak terdaftar disistem kami";
             $response["logindata"] = array();
             return response()->json($response);
         }

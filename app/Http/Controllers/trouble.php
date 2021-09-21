@@ -87,7 +87,7 @@ class trouble extends Controller
             'passcode' => 'ANJINGGILACODING'
         ]);
 
-        $data = [$ticket, $request->ip(), $get];
+        $data = [$ticket, $request->ip(), $post->created_at, $get];
         return response()->json($data);
     }
 

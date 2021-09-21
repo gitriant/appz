@@ -168,7 +168,8 @@
                     $("#span-search").addClass("ps-sp-top");
                     $("#loading").addClass("hidden");
                     $("#timer").removeClass("hidden");
-                    incTimer(data.created_at);
+                    timee = data[2];
+                    incTimer(data[2]);
                     $('#img-search').attr('src', '/image/search.png');
                     $("#id_ticket").val("#" + data[0]);
                     // $('<input class="ps-bot-in" type="text" style="border:0px;left:140px" id="id_ticket" value="#' + data[0] + '" />').insertAfter('#text-search');
