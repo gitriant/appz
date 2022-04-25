@@ -13,6 +13,7 @@ use App\Http\Controllers\ticket;
 use App\Http\Controllers\login;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,21 @@ Route::post('/edit_kerusakan', [kerusakan::class, 'edit']);
 Route::put('/update_kerusakan/{id}', [kerusakan::class, 'update']);
 Route::delete('/delete_kerusakan/{id}', [kerusakan::class, 'destroy']);
 //ticket
+Route::post('/search_ticket', function () {
+    $date = new \DateTime('now');
+    $digits = 4;
+    $ticket = $date->format('ymd') . "-" . rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+
+    return response()->json($ticket);
+});
+Route::post('/get_ip', function (Request $request) {
+    $ip_komp = DB::table('komputer')
+        ->select('ip')
+        ->where('id_komp', $request->id)
+        ->first();
+
+    return response()->json($ip_komp);
+});
 Route::get('/data_ticket', [ticket::class, 'index']);
 Route::get('/json_ticket/{stat}/{M}/{Y}', [ticket::class, 'json_ticket']);
 Route::get('/notif_ticket/{jav}', [ticket::class, 'notif_ticket']);

@@ -19,9 +19,13 @@ class ticket extends Controller
         if (!$request->session()->has('id_it')) {
             return redirect('/login')->with('alert', 'Silahkan Login Terlebih Dahulu!');
         };
+        $komputer = DB::table('komputer')->get();
+        $kerusakan = DB::table('kerusakan')->get();
         $judul  = "Ticket";
         return view('v_ticket', [
             'judul' => $judul,
+            'komputer' => $komputer,
+            'kerusakan' => $kerusakan,
         ]);
     }
 
@@ -33,11 +37,11 @@ class ticket extends Controller
             ->join('resolution', 'ticket.id_resolution', '=', 'resolution.id_resolution')
             ->join('feedback', 'ticket.id_feedback', '=', 'feedback.id_feedback')
             ->join('komputer', 'ticket.id_komputer', '=', 'komputer.id_komp')
-            ->where('id_ticket', 'like', substr($Y, -2) . str_pad($M + 1, 2, '0', STR_PAD_LEFT) . '%')
-            ->get();
+            ->where('id_ticket', 'like', substr($Y, -2) . str_pad($M + 1, 2, '0', STR_PAD_LEFT) . '%');
         if ($stat != "all") {
             $data = $data->where('status', $stat);
         }
+        $data->get();
 
         return Datatables::of($data)
             ->addColumn('aksi', function ($data) {

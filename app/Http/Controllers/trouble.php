@@ -93,13 +93,12 @@ class trouble extends Controller
 
     public function status_ticket(Request $request)
     {
-        $str_time = $request->timer;
-
-        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-
-        $time_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;
-
+        //if ($request->id_ticket) {
         $tiket = str_replace("#", "", $request->id_ticket);
+        // } else {
+        //     $tiket = str_replace("#", "", $ticket);
+        // }
+
         $get = DB::table('ticket')
             ->join('it', 'ticket.id_it', '=', 'it.id_it')
             ->select('it.nama', 'ticket.status', 'ticket.created_at')
@@ -110,10 +109,25 @@ class trouble extends Controller
             ->where('id_ticket', $tiket)
             ->first();
 
-        if ($get_sta->status == "close") {
-            $save = m_ticket::findOrFail($tiket);
-            $save->timer = $time_seconds;
-            $save->save();
+        if ($get_sta->timer == null) {
+            if (!$request->timer) {
+                $str_time = $request->timer;
+
+                sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+                $time_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;
+            } else {
+                $datetime = date("Y-m-d H:i:s");
+                $time_seconds = strtotime($get_sta->updated_at) - strtotime($get_sta->created_at);
+                //$time_seconds = date("H:i:s", $time_second);
+            }
+
+
+            if ($get_sta->status == "close") {
+                $save = m_ticket::findOrFail($tiket);
+                $save->timer = $time_seconds;
+                $save->save();
+            }
         }
 
         if (!$get) {
@@ -136,6 +150,9 @@ class trouble extends Controller
         $save->feedback = $feedback;
         $save->stars = $request->stars;
         $save->save();
+
+        //$this->status_ticket(Request $request);
+        return response()->json($get);
     }
 
     public function it_progress($ticket, $it)
@@ -152,7 +169,7 @@ class trouble extends Controller
 
 
 
-        if ($ticket_dataa->id_it == $it || $ticket_dataa->id_it == null) {
+        if ($ticket_dataa->id_it == $it || $ticket_dataa->id_it == null || $ticket_dataa->id_it == 1) {
             $save = m_ticket::findOrFail($ticket);
             $save->id_it = $it;
             $save->status = "onprogres";
@@ -194,11 +211,11 @@ class trouble extends Controller
         $post->resolution = $request->resolution;
         $post->save();
 
-        $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
-            'text' => 'Ticket dengan nomer #' . $request->id_ticket . ' telah selesai dikerjakan',
-            'type' => 'close',
-            'passcode' => 'ANJINGGILACODING'
-        ]);
+        // $response = Http::post('https://laporanbotonline.gifevetclinic.com/sendmassmessage', [
+        //     'text' => 'Ticket dengan nomer #' . $request->id_ticket . ' telah selesai dikerjakan',
+        //     'type' => 'close',
+        //     'passcode' => 'ANJINGGILACODING'
+        // ]);
 
         return response()->json($post);
     }

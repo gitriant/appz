@@ -227,7 +227,9 @@
                         $("#span-finish").addClass("ps-sp-top"),
                         $('#img-finish').attr('src', '/image/finish.png'),
                         $('#myModal1').modal('show'),
+                        //$('#id_ticket').val(null),
                         clearInterval(refreshIntervalId);
+                    //location.reload();
                     // else
                     //     $("#message").html("<div class='error_log'><p class='error'>Invalid username and/or password.</p></div>");
                 },

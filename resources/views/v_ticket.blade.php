@@ -11,6 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <button id="button-add" class="btn btn-primary">Add Data</button>
                         <h4>Filter</h4>
                         <div style="display: block ruby;">
                             <div class="col-md-3 controls">
@@ -52,9 +53,6 @@
                                     <option value="2020">2020</option>
                                     <option value="2019">2019</option>
                                     <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
                                 </select>
                             </div>
                         </div>
@@ -87,7 +85,7 @@
                 <h4 class="modal-title" id="myModalLabel">Tambah Data</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="form-add">
+                <form class="form-horizontal" method="post" role="form" id="form-add" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input class="form-control" type="text" name="id" id="id" hidden>
                     <div class="row">
@@ -95,15 +93,7 @@
                             <div class="control-group">
                                 <label class="control-label">Nomer Ticket</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="id_ticket" placeholder="Type something here..." class="span15">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="control-group">
-                                <label class="control-label">IP Komputer</label>
-                                <div class="controls">
-                                    <input class="form-control" type="text" id="ip" placeholder="Type something here..." class="span15">
+                                    <input class="form-control" type="text" name="id_ticket" id="id_ticket" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +101,21 @@
                             <div class="control-group">
                                 <label class="control-label">Nama Komputer</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="nama_komp" placeholder="Type something here..." class="span15">
+                                    <!-- <input class="form-control" type="text" id="nama_komp" placeholder="Type something here..." class="span15"> -->
+                                    <select class="form-control" tabindex="1" name="nama_komp" id="nama_komp" class="span15">
+                                        <option value="#" selected>Select here..</option>
+                                        @foreach($komputer as $komputer)
+                                        <option value="{{$komputer->id_komp}}">{{$komputer->nama_komp}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group">
+                                <label class="control-label">IP Komputer</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" name="ip" id="ip" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +123,20 @@
                             <div class="control-group">
                                 <label class="control-label">Masalah</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="problem" placeholder="Type something here..." class="span15">
+                                    <select class="form-control" tabindex="1" name="problem" id="problem" class="span15">
+                                        <option value="#" selected>Select here..</option>
+                                        @foreach($kerusakan as $kerusakan)
+                                        <option value="{{$kerusakan->jenis_kerusakan}}">{{$kerusakan->jenis_kerusakan}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <label class="control-label">Masalah</label>
+                                <div class="controls">
+                                    <textarea class="form-control" type="text" name="note" id="note" placeholder="Type something here..." class="span15"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +144,7 @@
                             <div class="control-group">
                                 <label class="control-label">Resolution</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="resolution" placeholder="Type something here..." class="span15">
+                                    <input class="form-control" type="text" name="resolution" id="resolution" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +152,7 @@
                             <div class="control-group">
                                 <label class="control-label">Feedback</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="feedback" placeholder="Type something here..." class="span15">
+                                    <input class="form-control" type="text" name="feedback" id="feedback" placeholder="Type something here..." class="span15">
                                 </div>
                             </div>
                         </div>
@@ -143,7 +160,12 @@
                             <div class="control-group">
                                 <label class="control-label">Status</label>
                                 <div class="controls">
-                                    <input class="form-control" type="text" id="status" placeholder="Type something here..." class="span15">
+                                    <select class="form-control" tabindex="1" name="status" id="status" class="span15">
+                                        <option value="#" selected>Select here..</option>
+                                        <option value="open">Open</option>
+                                        <option value="onprogres">Onprogres</option>
+                                        <option value="close">Close</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +176,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('form-add').reset();">Close</button>
-                <!-- <button id="in" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
+                <button id="in" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -256,6 +278,68 @@
             ],
         });
     };
+    //add data
+    $(document).on('click', '#button-add', function() {
+        $.ajax({
+            type: 'POST',
+            url: 'search_ticket',
+            data: {
+                '_token': "{{ csrf_token() }}",
+            },
+            success: function(data) {
+
+                //isi form
+                $('#id_ticket').val(data);
+
+
+                //$('.modal-title').text('Rincian Data');
+                $("#in").removeClass("btn btn-primary update");
+                $("#in").addClass("btn btn-primary add");
+                $('#in').text('Save');
+                $('#myModal').modal('show');
+
+            },
+        });
+
+    });
+    //get ip pc
+    $(document).on('change', '#nama_komp', function() {
+        $.ajax({
+            type: 'POST',
+            url: 'get_ip',
+            data: {
+                '_token': "{{ csrf_token() }}",
+                'id': $('#nama_komp').val()
+            },
+            success: function(data) {
+                //console.log(data);
+
+                //isi form
+                $('#ip').val(data.ip);
+
+            },
+        });
+
+    });
+    //store data
+    $('.modal-footer').on('click', '.add', function() {
+        var form = document.getElementById("form-add");
+        var fd = new FormData(form);
+        $.ajax({
+            type: 'POST',
+            url: '{{ url("create_ticket") }}',
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                $('#myModal').modal('hide');
+                document.getElementById("form-add").reset();
+                location.reload();
+
+            },
+        });
+    });
+    //end add
     //edit data
     $(document).on('click', '#edit', function(e) {
         e.preventDefault();
